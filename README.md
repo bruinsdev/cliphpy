@@ -1,7 +1,7 @@
 cliphpy
 =======
 
-Cliphy is a CLI PHP Framework.
+Cliphpy is a CLI PHP Framework.
 
 Install
 -------
@@ -9,4 +9,13 @@ Install
 ```
 npm install
 bower install
+grunt install
+```
+
+Developing
+----------
+Just run Grunt. There you run autoloader regeneration, PHPUnit testing a watch changed files.
+
+```
+grunt
 ```
