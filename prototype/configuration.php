@@ -1,5 +1,5 @@
 <?php
-namespace \Cliphpy\Prototype\Configuration;
+namespace Cliphpy\Prototype;
 
 class Configuration
 {
@@ -7,10 +7,14 @@ class Configuration
   /**
    * @var string
    */
-  public $logDir;
+  public $logDir = __DIR__ . "/../log";
 
   /**
    * @var string
    */
-  public $pidDir;
+  public $pidDir = __DIR__ . "/../pid";
+
+  public function __construct(){
+    ;
+  }
 }
