@@ -20,26 +20,35 @@ module.exports = (grunt) ->
       autoloader:
         command: [
           'php ./bower_components/php-autoloader/scripts/autoloader-build.php'
-          '--classpath ./app/'
-          '--deploypath ./autoloader/'
+          '--classpath lib/'
+          '--classpath prototype/'
+          '--deploypath autoloader/'
         ].join(' ')
 
+      removeReports:
+        command: 'rm -rf test/unit/report'
+
     phpunit:
-      Application:
-        dir: './app/'
+      Library:
+        dir: 'lib/'
+        options:
+          coverageHtml: 'test/unit/report/lib'
+      Prototype:
+        dir: 'prototype/'
+        options:
+          coverageHtml: 'test/unit/report/prototype'
       options:
-        bin: './bower_components/php-unit/phpunit'
+        bin: 'bower_components/php-unit/phpunit'
         colors: true
-        coveragePhp: true
         verbose: true
-        coverageHtml: './test/unit/report'
-        testdoxHtml: './test/unit/testdox.html'
-        bootstrap: './test/unit/bootstrap.php'
+        bootstrap: 'test/unit/bootstrap.php'
+
 
     watch:
       files:
         [
-          './app/**/*.php'
+          'lib/*.php'
+          'prototype/*.php'
         ]
       tasks:
         [
@@ -72,7 +81,8 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default',
     tasks = [
-      'shell:autoloader'
+      'autoloader'
+      'shell:removeReports'
       'phpunit'
       'shell:cleanUp'
       'watch'
