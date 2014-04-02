@@ -23,8 +23,8 @@ module.exports = (grunt) ->
       autoloader:
         command: [
           'php ./bower_components/php-autoloader/scripts/autoloader-build.php'
-          '--classpath lib/'
-          '--classpath prototype/'
+          '--classpath Lib/'
+          '--classpath Prototypes/'
           '--deploypath autoloader/'
         ].join(' ')
 
@@ -33,13 +33,13 @@ module.exports = (grunt) ->
 
     phpunit:
       Library:
-        dir: 'lib/'
+        dir: 'Lib/'
         options:
           coverageHtml: 'test/unit/report/Lib'
       Prototype:
-        dir: 'prototype/'
+        dir: 'Prototypes/'
         options:
-          coverageHtml: 'test/unit/report/Prototype'
+          coverageHtml: 'test/unit/report/Prototypes'
       options:
         bin: 'bower_components/php-unit/phpunit'
         colors: true
@@ -51,7 +51,7 @@ module.exports = (grunt) ->
       files:
         [
           'Lib/**/*.php'
-          'Prototype/**/*.php'
+          'Prototypes/**/*.php'
         ]
       tasks:
         [
