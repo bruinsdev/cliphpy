@@ -1,2 +1,23 @@
 cliphpy
 =======
+
+##### version 0.0.1
+
+Cliphpy is a CLI PHP Framework.
+
+Install
+-------
+
+```
+npm install
+bower install
+grunt install
+```
+
+Developing
+----------
+Just run Grunt. There you run autoloader regeneration, PHPUnit testing a watch changed files.
+
+```
+grunt
+```

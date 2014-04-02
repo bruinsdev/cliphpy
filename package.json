@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "grunt": "~0.4",
+    "grunt-lodash": "~0.3",
+    "grunt-phpunit": "~0.3",
+    "grunt-shell": "~0.6",
+    "grunt-contrib-watch": "~0.5",
+    "lodash": "~2.4",
+    "lodash-cli": "~2.4"
+  }
+}

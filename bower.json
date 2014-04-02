@@ -1,0 +1,9 @@
+{
+  "name": "CliPHPy",
+  "version": "0.0.0",
+  "description": "SOAP server and worker for receiving messages",
+  "dependencies": {
+    "php-unit": "https://github.com/sebastianbergmann/phpunit.git",
+    "php-autoloader": "https://github.com/malkusch/php-autoloader.git"
+  }
+}
