@@ -17,6 +17,9 @@ module.exports = (grunt) ->
       cleanUp:
         command: 'rm -fr true'
 
+      cleanUpTestTmp:
+        command: 'rm -fr test/tmp'
+
       autoloader:
         command: [
           'php ./bower_components/php-autoloader/scripts/autoloader-build.php'
@@ -32,11 +35,11 @@ module.exports = (grunt) ->
       Library:
         dir: 'lib/'
         options:
-          coverageHtml: 'test/unit/report/lib'
+          coverageHtml: 'test/unit/report/Lib'
       Prototype:
         dir: 'prototype/'
         options:
-          coverageHtml: 'test/unit/report/prototype'
+          coverageHtml: 'test/unit/report/Prototype'
       options:
         bin: 'bower_components/php-unit/phpunit'
         colors: true
@@ -47,11 +50,12 @@ module.exports = (grunt) ->
     watch:
       files:
         [
-          'lib/*.php'
-          'prototype/*.php'
+          'Lib/**/*.php'
+          'Prototype/**/*.php'
         ]
       tasks:
         [
+          'shell:cleanUpTestTmp'
           'shell:autoloader'
           'phpunit'
           'shell:cleanUp'
@@ -82,6 +86,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default',
     tasks = [
       'autoloader'
+      'shell:cleanUpTestTmp'
       'shell:removeReports'
       'phpunit'
       'shell:cleanUp'
