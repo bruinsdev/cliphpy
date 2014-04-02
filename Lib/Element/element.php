@@ -1,11 +1,14 @@
 <?php
 namespace Cliphpy\Lib;
+use
+  Cliphpy\Lib\Log,
+  Cliphpy\Prototype\Configuration;
 
 class Element
 {
 
   /**
-   * @var Config
+   * @var Configuration
    */
   protected $config;
 
@@ -20,10 +23,17 @@ class Element
   protected $idChild;
 
   /**
-   * @param Config $config
+   * @param Configuration $config
    */
-  public function setConfig(Config $config){
+  public function setConfig(Configuration $config){
     $this->config = $config;
+  }
+
+  /**
+   * @return Configuration
+   */
+  public function getConfig(){
+    return $this->config;
   }
 
   /**
@@ -31,6 +41,13 @@ class Element
    */
   public function setLog(Log $log){
     $this->log = $log;
+  }
+
+  /**
+   * @return Log
+   */
+  public function getLog(){
+    return $this->log;
   }
 
   /**
