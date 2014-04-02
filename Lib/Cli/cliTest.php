@@ -1,7 +1,7 @@
 <?php
 use
   Cliphpy\Lib\Cli,
-  Cliphpy\Prototype\Configuration;
+  Cliphpy\Prototypes\Configuration;
 
 class CliTest extends PHPUnit_Framework_TestCase
 {

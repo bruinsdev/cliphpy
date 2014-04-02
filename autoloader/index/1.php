@@ -15,6 +15,6 @@
  */
 
 return array(
-    'cliphpy\prototype\configuration' => '../prototype/configuration.php',
-    'testconfiguration' => '../prototype/configurationTest.php',
+    'cliphpy\prototypes\configuration' => '../Prototypes/configuration.php',
+    'testconfiguration' => '../Prototypes/configurationTest.php',
 );

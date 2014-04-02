@@ -1,9 +1,8 @@
 <?php
-namespace Cliphpy\Prototype;
+namespace Cliphpy\Prototypes;
 
 class Configuration
 {
-
   /**
    * @var string
    */

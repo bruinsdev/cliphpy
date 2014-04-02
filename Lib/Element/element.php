@@ -2,7 +2,7 @@
 namespace Cliphpy\Lib;
 use
   Cliphpy\Lib\Log,
-  Cliphpy\Prototype\Configuration;
+  Cliphpy\Prototypes\Configuration;
 
 class Element
 {

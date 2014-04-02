@@ -1,11 +1,10 @@
 <?php
-use Cliphpy\Prototype\Configuration;
+use Cliphpy\Prototypes\Configuration;
 
 class testConfiguration extends PHPUnit_Framework_TestCase
 {
-
   /**
-   * @use \Cliphpy\Prototype\Configuration::__construct
+   * @use \Cliphpy\Prototypes\Configuration::__construct
    */
   public function testConstruct(){
     $testObj = new Configuration;

@@ -2,7 +2,7 @@
 use
   Cliphpy\Lib\Element,
   Cliphpy\Lib\Log,
-  Cliphpy\Prototype\Configuration;
+  Cliphpy\Prototypes\Configuration;
 
 class testElement extends PHPUnit_Framework_TestCase
 {
