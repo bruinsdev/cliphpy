@@ -15,6 +15,10 @@
  */
 
 return array(
-    'cliphpy\lib\element' => '../lib/element.php',
-    'testelement' => '../lib/elementTest.php',
+    'cliphpy\lib\cli' => '../lib/Cli/cli.php',
+    'cliphpy\lib\log' => '../lib/Log/log.php',
+    'clitest' => '../lib/Cli/cliTest.php',
+    'cliphpy\lib\element' => '../lib/Element/element.php',
+    'logtest' => '../lib/Log/logTest.php',
+    'testelement' => '../lib/Element/elementTest.php',
 );
