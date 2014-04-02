@@ -1,6 +1,10 @@
 <?php
 namespace Cliphpy\Lib;
 
+if ("cli" !== PHP_SAPI) {
+  die("This can only be run from the CLI!");
+}
+
 class Cli extends Element
 {
 
@@ -28,7 +32,6 @@ class Cli extends Element
    * @var string
    */
   private $name;
-
 
   public function getOptions(){
     $this->options = getopt($this->shortOptions, $this->longOptions);
