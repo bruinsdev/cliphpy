@@ -1,6 +1,8 @@
 cliphpy
 =======
 
+##### version 0.0.1
+
 Cliphpy is a CLI PHP Framework.
 
 Install
