@@ -35,7 +35,7 @@ class Log
   }
 
   /**
-   * @param  string $signal
+   * @param  integer $signal
    */
   public function close($signal){
     $this->write();

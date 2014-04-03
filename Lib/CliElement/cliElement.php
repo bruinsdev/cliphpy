@@ -6,7 +6,7 @@ class CliElement extends Element
 {
 
   /**
-   * @param  string $signal
+   * @param  integer $signal
    */
   public function close($signal){
     if (true === is_object($this->log)){
