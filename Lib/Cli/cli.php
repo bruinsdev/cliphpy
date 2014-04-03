@@ -5,7 +5,7 @@ if ("cli" !== PHP_SAPI) {
   die("This can only be run from the CLI!");
 }
 
-class Cli extends Element
+class Cli extends CliElement
 {
 
   /**

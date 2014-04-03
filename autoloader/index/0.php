@@ -20,5 +20,6 @@ return array(
     'clitest' => '../Lib/Cli/cliTest.php',
     'cliphpy\lib\element' => '../Lib/Element/element.php',
     'logtest' => '../Lib/Log/logTest.php',
-    'testelement' => '../Lib/Element/elementTest.php',
+    'cliphpy\lib\clielement' => '../Lib/CliElement/cliElement.php',
+    'testelement' => '../Lib/CliElement/cliElementTest.php',
 );

@@ -4,7 +4,7 @@ use
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
-class Element
+abstract class Element
 {
 
   /**
