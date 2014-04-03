@@ -15,13 +15,5 @@
  */
 
 return array(
-    'cliphpy\lib\cli' => '../Lib/Cli/cli.php',
-    'cliphpy\lib\log' => '../Lib/Log/log.php',
-    'clitest' => '../Lib/Cli/cliTest.php',
-    'cliphpy\lib\element' => '../Lib/Element/element.php',
-    'logtest' => '../Lib/Log/logTest.php',
-    'cliphpy\lib\process' => '../Lib/Process/process.php',
-    'cliphpy\lib\clielement' => '../Lib/CliElement/cliElement.php',
-    'processtest' => '../Lib/Process/processTest.php',
-    'testelement' => '../Lib/CliElement/cliElementTest.php',
+    'cliphpy\interfaces\commandlineinterface' => '../Interfaces/commandLineIterface.php',
 );

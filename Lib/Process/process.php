@@ -1,6 +1,8 @@
 <?php
 namespace Cliphpy\Lib;
-use Cliphpy\Lib\CliElement;
+use
+  Cliphpy\Interfaces\CommandLineInterface,
+  Cliphpy\Lib\CliElement;
 
 class Process extends CliElement implements CommandLineInterface
 {
