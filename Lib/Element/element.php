@@ -22,6 +22,11 @@ class Element
    */
   protected $idChild;
 
+  public function __construct(){
+    declare(ticks = 1);
+    $this->initSignalHandler();
+  }
+
   /**
    * @param Configuration $config
    */
@@ -63,4 +68,37 @@ class Element
   public function getIdChild(){
     return $this->idChild;
   }
+
+  private function initSignalHandler(){
+    $obj = $this;
+    $handler = function($signal) use($obj){$obj->signalHandler($signal); };
+    pcntl_signal(SIGINT, $handler);
+    pcntl_signal(SIGTERM, $handler);
+  }
+
+  /**
+   * @param  string $signal
+   */
+  private function signalHandler($signal){
+    switch ($signal) {
+      case SIGINT:
+        $type = "SIGINT";
+        break;
+      case SIGTERM:
+        $type = "SIGTERM";
+        break;
+    }
+    $msg = "Detected %s. Exiting.";
+    $log = sprintf($msg, $type);
+    if (true === is_object($this->log)){
+      $this->log->info($log);
+    }
+    $this->close($signal);
+    exit;
+  }
+
+  /**
+   * @param  string $signal
+   */
+  abstract function close($signal);
 }
