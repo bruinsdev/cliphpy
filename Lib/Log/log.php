@@ -35,6 +35,13 @@ class Log
   }
 
   /**
+   * @param  string $signal
+   */
+  public function close($signal){
+    $this->write();
+  }
+
+  /**
    * @param string $msg
    */
   public function info($msg){
