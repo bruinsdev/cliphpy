@@ -1,16 +1,8 @@
 <?php
 namespace Cliphpy\Lib;
-use
-  Cliphpy\Interfaces\CommandLineInterface,
-  Cliphpy\Lib\CliElement;
+use Cliphpy\Lib\CliElement;
 
-class Process extends CliElement implements CommandLineInterface
+class Process extends CliElement
 {
 
-  /**
-   * @param  integer $signal
-   */
-  public function close($signal){
-    exit;
-  }
 }
