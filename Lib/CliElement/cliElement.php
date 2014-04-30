@@ -1,8 +1,10 @@
 <?php
 namespace Cliphpy\Lib;
-use Cliphpy\Lib\Element;
+use
+  Cliphpy\Interfaces\CommandLineInterface,
+  Cliphpy\Lib\Element;
 
-class CliElement extends Element
+class CliElement extends Element implements CommandLineInterface
 {
 
   /**
