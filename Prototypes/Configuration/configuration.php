@@ -11,7 +11,7 @@ class Configuration implements iConfiguration
   /**
    * @var string
    */
-  private $environment = "production";
+  protected $environment = "production";
 
   public function getConfig(){
     throw new \Exception("Configuration:getConfig is not defined.", 1);
