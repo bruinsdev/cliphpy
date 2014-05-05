@@ -18,6 +18,7 @@ return array(
     'cliphpy\prototypes\settings' => '../Prototypes/Settings/settings.php',
     'cliphpy\prototypes\iconfiguration' => '../Prototypes/Configuration/interface.php',
     'testsettings' => '../Prototypes/Settings/settingsTest.php',
+    'clonesettings' => '../Prototypes/Settings/settingsTest.php',
     'cliphpy\prototypes\configuration' => '../Prototypes/Configuration/configuration.php',
     'testconfiguration' => '../Prototypes/Configuration/configurationTest.php',
 );

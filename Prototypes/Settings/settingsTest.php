@@ -7,7 +7,7 @@ class testSettings extends PHPUnit_Framework_TestCase
    * @use \Cliphpy\Prototypes\Settings::__construct
    */
   public function testConstruct(){
-    $testObj = new Settings;
+    $testObj = new cloneSettings;
 
     $logDirExpected = __DIR__ . "/../log";
     $pidDirExpected = __DIR__ . "/../pid";
@@ -17,3 +17,5 @@ class testSettings extends PHPUnit_Framework_TestCase
   }
 
 }
+
+class cloneSettings extends Settings{}

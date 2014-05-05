@@ -1,7 +1,7 @@
 <?php
 namespace Cliphpy\Prototypes;
 
-class Settings
+abstract class Settings
 {
 
   /**
