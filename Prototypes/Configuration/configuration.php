@@ -1,18 +1,8 @@
 <?php
 namespace Cliphpy\Prototypes;
 
-class Configuration
+class Configuration implements iConfiguration
 {
-  /**
-   * @var string
-   */
-  public $logDir = __DIR__ . "/../log";
-
-  /**
-   * @var string
-   */
-  public $pidDir = __DIR__ . "/../pid";
-
   /**
    * @var string
    */
@@ -23,15 +13,11 @@ class Configuration
    */
   private $environment = "production";
 
-  public function __construct(){
-    ;
-  }
-
   public function getConfig(){
     throw new \Exception("Configuration:getConfig is not defined.", 1);
   }
 
-  private function setEnvironment(){
+  protected function setEnvironment(){
     if (isset($_SERVER[$this->environmentVariableName])) {
       $this->environment = $_SERVER[$this->environmentVariableName];
     }

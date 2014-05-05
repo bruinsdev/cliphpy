@@ -1,13 +1,13 @@
 <?php
-use Cliphpy\Prototypes\Configuration;
+use Cliphpy\Prototypes\Settings;
 
-class testConfiguration extends PHPUnit_Framework_TestCase
+class testSettings extends PHPUnit_Framework_TestCase
 {
   /**
-   * @use \Cliphpy\Prototypes\Configuration::__construct
+   * @use \Cliphpy\Prototypes\Settings::__construct
    */
   public function testConstruct(){
-    $testObj = new Configuration;
+    $testObj = new Settings;
 
     $logDirExpected = __DIR__ . "/../log";
     $pidDirExpected = __DIR__ . "/../pid";
