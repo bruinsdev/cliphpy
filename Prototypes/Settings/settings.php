@@ -1,16 +1,25 @@
 <?php
 namespace Cliphpy\Prototypes;
 
-abstract class Settings
+class Settings implements iSettings
 {
+  /**
+   * @var string
+   */
+  protected $environmentVariableName = "CLIPHPY_ENVIRONMENT";
 
   /**
    * @var string
    */
-  public $logDir = __DIR__ . "/../log";
+  protected $environment = "production";
 
-  /**
-   * @var string
-   */
-  public $pidDir = __DIR__ . "/../pid";
+  public function getSettings(){
+    throw new \Exception("Configuration:getSettings is not defined.", 1);
+  }
+
+  protected function setEnvironment(){
+    if (isset($_SERVER[$this->environmentVariableName])) {
+      $this->environment = $_SERVER[$this->environmentVariableName];
+    }
+  }
 }
