@@ -27,6 +27,11 @@ class Configuration
     ;
   }
 
+  public function getConfig(){
+    throw new Exception("Configuration:getConfig is not defined.", 1);
+
+  }
+
   private function setEnvironment(){
     if (isset($_SERVER[$this->environmentVariableName])) {
       $this->environment = $_SERVER[$this->environmentVariableName];
