@@ -16,12 +16,12 @@ class Configuration
   /**
    * @var string
    */
-  private $environment = "production";
+  protected $environmentVariableName = "CLIPHPY_ENVIRONMENT";
 
   /**
    * @var string
    */
-  private $environmentVariableName = "CLIPHPY_ENVIRONMENT";
+  private $environment = "production";
 
   public function __construct(){
     ;
