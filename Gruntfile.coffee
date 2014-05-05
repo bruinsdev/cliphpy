@@ -5,8 +5,8 @@ module.exports = (grunt) ->
       install:
         command: [
           'cd ./bower_components/php-unit'
-          'curl -sS https://getcomposer.org/installer | php'
-          'php composer.phar install'
+          'curl -sS https://getcomposer.org/installer | /usr/bin/php'
+          '/usr/bin/php composer.phar install'
           ].join(';')
         options:
           stdout: true
