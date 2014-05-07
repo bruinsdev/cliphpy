@@ -18,6 +18,16 @@ abstract class Element
   protected $log;
 
   /**
+   * @var Cache
+   */
+  protected $cache;
+
+  /**
+   * @var string
+   */
+  protected $alias;
+
+  /**
    * @var integer
    */
   protected $idChild;
@@ -42,6 +52,20 @@ abstract class Element
   }
 
   /**
+   * @param string $alias
+   */
+  public function setAlias($alias){
+    $this->alias = $alias;
+  }
+
+  /**
+   * @return string
+   */
+  public function getAlias(){
+    return $this->alias;
+  }
+
+  /**
    * @param Log $log
    */
   public function setLog(Log $log){
@@ -53,6 +77,13 @@ abstract class Element
    */
   public function getLog(){
     return $this->log;
+  }
+
+  /**
+   * @param Cache $cache
+   */
+  public function setCache(Cache $cache){
+    $this->cache = $cache;
   }
 
   /**
