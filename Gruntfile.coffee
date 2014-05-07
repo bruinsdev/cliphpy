@@ -23,6 +23,7 @@ module.exports = (grunt) ->
       autoloader:
         command: [
           'php ./bower_components/php-autoloader/scripts/autoloader-build.php'
+          '--classpath gitsubmodule/'
           '--classpath Interfaces/'
           '--classpath Prototypes/'
           '--classpath Lib/'

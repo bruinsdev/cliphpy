@@ -26,4 +26,8 @@ $_autoloader->register();
 $_autoloader = new InstantAutoloader(__DIR__ . '/index/2.php');
 $_autoloader->setBasePath(__DIR__);
 $_autoloader->register();
+
+$_autoloader = new InstantAutoloader(__DIR__ . '/index/3.php');
+$_autoloader->setBasePath(__DIR__);
+$_autoloader->register();
 unset($_autoloader);
