@@ -4,7 +4,7 @@ use
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
-class testElement extends PHPUnit_Framework_TestCase
+class testCliElement extends PHPUnit_Framework_TestCase
 {
 
   /**
