@@ -4,6 +4,8 @@ module.exports = (grunt) ->
     shell:
       install:
         command: [
+          'git submodule init'
+          'git submodule update --recursive'
           'cd ./bower_components/php-unit'
           'curl -sS https://getcomposer.org/installer | /usr/bin/php'
           '/usr/bin/php composer.phar install'
