@@ -34,6 +34,11 @@ class Cli extends CliElement
   private $name;
 
   /**
+   * @var string
+   */
+  private $usage;
+
+  /**
    * @param array
    */
   public function setOptions($options){
@@ -91,12 +96,23 @@ class Cli extends CliElement
   }
 
   /**
+   * @param string $usage
+   */
+  public function setUsage($usage){
+    $this->usage = $usage;
+  }
+
+  /**
    * @return string
    */
   public function getUsage(){
     $usage = "Usage:" . PHP_EOL . PHP_EOL;
     $usage .= "-c, --child\t<integer>\t\tChild ID process";
     $usage .= PHP_EOL;
+    if (false === is_null($this->usage)){
+      $usage .= "Custom usage:" . PHP_EOL . PHP_EOL;
+      $usage .= $this->usage . PHP_EOL;
+    }
     return $usage;
   }
 

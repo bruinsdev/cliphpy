@@ -35,7 +35,7 @@ class CliTest extends PHPUnit_Framework_TestCase
     $actual = $testObj->getOptions();
     $expected = array(
       "short" => "c:t:q::v",
-      "long"  => array(
+      "long" => array(
         "child:",
         "test:",
         "quit::",
@@ -47,11 +47,19 @@ class CliTest extends PHPUnit_Framework_TestCase
   }
 
   /**
+   * @covers Cliphpy\Lib\Cli::setUsage
    * @covers Cliphpy\Lib\Cli::getUsage
    */
   public function testUsage(){
     $testObj = new Cli;
     $usage = $testObj->getUsage();
     $this->assertTrue(is_string($usage));
+
+    $customUsage = "This is custom usage, only for testing";
+    $testObj->setUsage($customUsage);
+    $expected = $usage. "Custom usage:" . PHP_EOL . PHP_EOL;
+    $expected .= $customUsage . PHP_EOL;
+    $actual = $testObj->getUsage();
+    $this->assertEquals($expected, $actual);
   }
 }
