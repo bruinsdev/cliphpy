@@ -64,6 +64,13 @@ class Postgresql extends Element
     $this->db->query($sql, $this->config->{$this->alias}->name);
   }
 
+  /**
+   * @return DibiConnection
+   */
+  public function getInstance(){
+    return clone $this->db;
+  }
+
   protected function getVersion(){
     $sql = "SELECT version()";
     $version = $this->db->fetchSingle($sql);
