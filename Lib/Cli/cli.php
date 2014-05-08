@@ -63,6 +63,13 @@ class Cli extends CliElement
   }
 
   /**
+   * @return array
+   */
+  public function getReadedOptions(){
+    return $this->options;
+  }
+
+  /**
    * @param string $name
    */
   public function setName($name){
