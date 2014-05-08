@@ -9,6 +9,20 @@ class Postgresql extends Element
    */
   protected $db;
 
+  /**
+   * @param string $alias
+   */
+  public function setAlias($alias = "postgre"){
+    $this->alias = $alias;
+  }
+
+  /**
+   * @return string
+   */
+  public function getAlias(){
+    return $this->alias;
+  }
+
   public function isConnected(){
     try {
       return (bool) $this->db->fetchSingle("SELECT 1");

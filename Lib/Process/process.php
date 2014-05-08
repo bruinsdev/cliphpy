@@ -10,6 +10,7 @@ class Process extends CliElement
    */
   public function initPostgresql($alias = "postgre"){
     $this->{$alias} = new DAO\Postgresql;
+    $this->{$alias}->setAlias($alias);
     $this->{$alias}->setConfig($this->config);
   }
 
