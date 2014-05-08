@@ -59,7 +59,7 @@ class Postgresql extends Element
     return $this->db->isConnected();
   }
 
-  protected function setApplicationName(){
+  public function setApplicationName(){
     $sql = "SET [application_name] = %s";
     $this->db->query($sql, $this->config->{$this->alias}->name);
   }
