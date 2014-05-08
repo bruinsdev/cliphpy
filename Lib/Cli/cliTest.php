@@ -34,8 +34,8 @@ class CliTest extends PHPUnit_Framework_TestCase
 
     $actual = $testObj->getOptions();
     $expected = array(
-      "short" => "t:q::v",
-      "long" => array(
+      "short" => "c:t:q::v",
+      "long"  => array(
         "child:",
         "test:",
         "quit::",

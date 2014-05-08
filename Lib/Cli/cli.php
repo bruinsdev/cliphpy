@@ -11,7 +11,7 @@ class Cli extends CliElement
   /**
    * @var string
    */
-  private $shortOptions = "";
+  private $shortOptions = "c:";
 
   /**
    * @var array
@@ -94,7 +94,9 @@ class Cli extends CliElement
    * @return string
    */
   public function getUsage(){
-    $usage = "Usage";
+    $usage = "Usage:" . PHP_EOL . PHP_EOL;
+    $usage .= "-c, --child\t<integer>\t\tChild ID process";
+    $usage .= PHP_EOL;
     return $usage;
   }
 
