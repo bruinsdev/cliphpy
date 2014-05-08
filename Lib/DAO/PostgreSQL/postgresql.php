@@ -61,7 +61,7 @@ class Postgresql extends Element
 
   protected function setApplicationName(){
     $sql = "SET [application_name] = %s";
-    $this->db->query($sql, $this->config->{$this->alias}->appName);
+    $this->db->query($sql, $this->config->{$this->alias}->applicationName);
   }
 
   protected function getVersion(){

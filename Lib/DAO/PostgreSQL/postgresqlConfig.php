@@ -28,4 +28,9 @@ class Configuration
    * @var string
    */
   public $database = "postgres";
+
+  /**
+   * @var string
+   */
+  public $applicationName = "Cliphpy";
 }
