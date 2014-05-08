@@ -14,4 +14,17 @@ class Process extends CliElement
     $this->{$alias}->setConfig($this->config);
   }
 
+  /**
+   * @param array $options
+   */
+  public function setOptions($options){
+    $this->options = $options;
+  }
+
+  /**
+   * @return array
+   */
+  public function getOptions(){
+    return $this->options;
+  }
 }
