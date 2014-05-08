@@ -32,5 +32,5 @@ class Configuration
   /**
    * @var string
    */
-  public $applicationName = "Cliphpy";
+  public $name = "Cliphpy";
 }
