@@ -9,7 +9,7 @@ class Process extends CliElement
    * @param  string $alias
    */
   public function initPostgresql($alias = "postgre"){
-    $this->{$alias} = new Postgresql;
+    $this->{$alias} = new DAO\Postgresql;
     $this->{$alias}->setConfig($this->config);
   }
 
