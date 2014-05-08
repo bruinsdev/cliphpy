@@ -33,7 +33,27 @@ class Cli extends CliElement
    */
   private $name;
 
+  /**
+   * @param array
+   */
+  public function setOptions($options){
+    foreach ($options as $short => $long){
+      $this->shortOptions .= $short;
+      $this->longOptions[] = $long;
+    }
+  }
+
+  /**
+   * @return array
+   */
   public function getOptions(){
+    return array(
+      "short" => $this->shortOptions,
+      "long" => $this->longOptions,
+    );
+  }
+
+  public function readOptions(){
     $this->options = getopt($this->shortOptions, $this->longOptions);
   }
 
@@ -66,8 +86,16 @@ class Cli extends CliElement
         }
       }
     } else {
-      die(PHP_EOL . "Undefined child." . PHP_EOL);
+      die($this->getUsage());
     }
+  }
+
+  /**
+   * @return string
+   */
+  public function getUsage(){
+    $usage = "Usage";
+    return $usage;
   }
 
   private function writePid(){
@@ -94,5 +122,4 @@ class Cli extends CliElement
     }
     return false;
   }
-
 }
