@@ -32,6 +32,16 @@ abstract class Element
    */
   protected $idChild;
 
+  /**
+   * @var string
+   */
+  private $callerFunction;
+
+  /**
+   * @var string
+   */
+  private $callerClass;
+
   public function __construct(){
     declare(ticks = 1);
     $this->initSignalHandler();
@@ -126,6 +136,12 @@ abstract class Element
     }
     $this->close($signal);
     exit;
+  }
+
+  protected function caller(){
+    $trace = debug_backtrace();
+    $this->callerFunction = $trace[2]["function"];
+    $this->callerClass = $trace[2]["class"];
   }
 
   /**
