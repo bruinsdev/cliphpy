@@ -15,6 +15,5 @@
  */
 
 return array(
-    'cliphpy\prototypes\configuration' => '../Prototypes/configuration.php',
-    'testconfiguration' => '../Prototypes/configurationTest.php',
+    'cliphpy\interfaces\commandlineinterface' => '../Interfaces/commandLineIterface.php',
 );

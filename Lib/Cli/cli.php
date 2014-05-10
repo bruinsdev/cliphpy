@@ -5,13 +5,13 @@ if ("cli" !== PHP_SAPI) {
   die("This can only be run from the CLI!");
 }
 
-class Cli extends Element
+class Cli extends CliElement
 {
 
   /**
    * @var string
    */
-  private $shortOptions = "";
+  private $shortOptions = "c:";
 
   /**
    * @var array
@@ -33,8 +33,40 @@ class Cli extends Element
    */
   private $name;
 
+  /**
+   * @var string
+   */
+  private $usage;
+
+  /**
+   * @param array
+   */
+  public function setOptions($options){
+    foreach ($options as $short => $long){
+      $this->shortOptions .= $short;
+      $this->longOptions[] = $long;
+    }
+  }
+
+  /**
+   * @return array
+   */
   public function getOptions(){
+    return array(
+      "short" => $this->shortOptions,
+      "long" => $this->longOptions,
+    );
+  }
+
+  public function readOptions(){
     $this->options = getopt($this->shortOptions, $this->longOptions);
+  }
+
+  /**
+   * @return array
+   */
+  public function getReadedOptions(){
+    return $this->options;
   }
 
   /**
@@ -66,8 +98,29 @@ class Cli extends Element
         }
       }
     } else {
-      die(PHP_EOL . "Undefined child." . PHP_EOL);
+      die($this->getUsage());
     }
+  }
+
+  /**
+   * @param string $usage
+   */
+  public function setUsage($usage){
+    $this->usage = $usage;
+  }
+
+  /**
+   * @return string
+   */
+  public function getUsage(){
+    $usage = "Usage:" . PHP_EOL . PHP_EOL;
+    $usage .= "-c, --child\t<integer>\t\tChild ID process";
+    $usage .= PHP_EOL;
+    if (false === is_null($this->usage)){
+      $usage .= "Custom usage:" . PHP_EOL . PHP_EOL;
+      $usage .= $this->usage . PHP_EOL;
+    }
+    return $usage;
   }
 
   private function writePid(){
@@ -94,5 +147,4 @@ class Cli extends Element
     }
     return false;
   }
-
 }

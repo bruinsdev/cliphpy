@@ -4,7 +4,7 @@ use
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
-class Element
+abstract class Element
 {
 
   /**
@@ -18,9 +18,34 @@ class Element
   protected $log;
 
   /**
+   * @var Cache
+   */
+  protected $cache;
+
+  /**
+   * @var string
+   */
+  protected $alias;
+
+  /**
    * @var integer
    */
   protected $idChild;
+
+  /**
+   * @var string
+   */
+  protected $callerFunction;
+
+  /**
+   * @var string
+   */
+  protected $callerClass;
+
+  public function __construct(){
+    declare(ticks = 1);
+    $this->initSignalHandler();
+  }
 
   /**
    * @param Configuration $config
@@ -34,6 +59,20 @@ class Element
    */
   public function getConfig(){
     return $this->config;
+  }
+
+  /**
+   * @param string $alias
+   */
+  public function setAlias($alias = "alias"){
+    $this->alias = $alias;
+  }
+
+  /**
+   * @return string
+   */
+  public function getAlias(){
+    return $this->alias;
   }
 
   /**
@@ -51,6 +90,13 @@ class Element
   }
 
   /**
+   * @param Cache $cache
+   */
+  public function setCache(Cache $cache){
+    $this->cache = $cache;
+  }
+
+  /**
    * @param integer $idChild
    */
   public function setIdChild($idChild){
@@ -63,4 +109,43 @@ class Element
   public function getIdChild(){
     return $this->idChild;
   }
+
+  private function initSignalHandler(){
+    $obj = $this;
+    $handler = function($signal) use($obj){$obj->signalHandler($signal); };
+    pcntl_signal(SIGINT, $handler);
+    pcntl_signal(SIGTERM, $handler);
+  }
+
+  /**
+   * @param  string $signal
+   */
+  private function signalHandler($signal){
+    switch ($signal) {
+      case SIGINT:
+        $type = "SIGINT";
+        break;
+      case SIGTERM:
+        $type = "SIGTERM";
+        break;
+    }
+    $msg = "Detected %s. Exiting.";
+    $log = sprintf($msg, $type);
+    if (true === is_object($this->log)){
+      $this->log->info($log);
+    }
+    $this->close($signal);
+    exit;
+  }
+
+  protected function caller(){
+    $trace = debug_backtrace();
+    $this->callerFunction = $trace[2]["function"];
+    $this->callerClass = $trace[2]["class"];
+  }
+
+  /**
+   * @param  string $signal
+   */
+  abstract function close($signal);
 }

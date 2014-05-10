@@ -3,6 +3,7 @@ namespace Cliphpy\Prototypes;
 
 class Configuration
 {
+
   /**
    * @var string
    */
@@ -12,8 +13,4 @@ class Configuration
    * @var string
    */
   public $pidDir = __DIR__ . "/../pid";
-
-  public function __construct(){
-    ;
-  }
 }
