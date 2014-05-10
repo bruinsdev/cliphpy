@@ -35,12 +35,12 @@ abstract class Element
   /**
    * @var string
    */
-  private $callerFunction;
+  protected $callerFunction;
 
   /**
    * @var string
    */
-  private $callerClass;
+  protected $callerClass;
 
   public function __construct(){
     declare(ticks = 1);

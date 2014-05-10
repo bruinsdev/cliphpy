@@ -9,6 +9,7 @@ Install
 -------
 
 ```
+pecl install redis
 npm install
 bower install
 grunt install
