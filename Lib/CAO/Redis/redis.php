@@ -128,7 +128,7 @@ class Redis extends Element
     if (is_null($key)){
       return $this->key;
     }
-    if (is_array($key)){
+    if (is_array($key) && 1 === count($key)){
       $key = $key[0];
     }
     if (is_string($key) || is_int($key)){

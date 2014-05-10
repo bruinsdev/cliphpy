@@ -115,14 +115,15 @@ class testRedis extends \PHPUnit_Framework_TestCase
    */
   public function testSet(){
     $this->testConnect();
-    $key = array("PHPUnit", "TestKey");
     $saved = "_PHP_UNIT_TEST_VALUE_";
-    $value = $this->redis->get($key);
+    $key1 = "PHPUnit";
+    $key2 = "TestKey";
+    $value = $this->redis->get($key1, $key2);
     if (is_null($value)){
       $this->redis->set($saved);
     }
 
-    $value2 = $this->redis->get($key);
+    $value2 = $this->redis->get($key1, $key2);
     $this->assertEquals($saved, $value2);
     $this->redis->flushAll();
   }
