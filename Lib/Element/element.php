@@ -54,7 +54,7 @@ abstract class Element
   /**
    * @param string $alias
    */
-  public function setAlias($alias){
+  public function setAlias($alias = "alias"){
     $this->alias = $alias;
   }
 
