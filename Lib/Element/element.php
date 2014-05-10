@@ -90,9 +90,9 @@ abstract class Element
   }
 
   /**
-   * @param Cache $cache
+   * @param stdClass $cache
    */
-  public function setCache(Cache $cache){
+  public function setCache($cache){
     $this->cache = $cache;
   }
 

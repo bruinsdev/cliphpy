@@ -15,6 +15,15 @@ class Process extends CliElement
   }
 
   /**
+   * @param  string $alias
+   */
+  public function initRedis($alias = "redis"){
+    $this->{$alias} = new CAO\Redis;
+    $this->{$alias}->setAlias($alias);
+    $this->{$alias}->setConfig($this->config);
+  }
+
+  /**
    * @param array $options
    */
   public function setOptions($options){
