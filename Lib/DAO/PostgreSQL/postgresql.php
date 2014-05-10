@@ -9,18 +9,16 @@ class Postgresql extends Element
    */
   protected $db;
 
-  /**
-   * @param string $alias
-   */
-  public function setAlias($alias = "postgre"){
-    $this->alias = $alias;
-  }
-
-  /**
-   * @return string
-   */
-  public function getAlias(){
-    return $this->alias;
+  public function connect(){
+    $arg = array(
+      "driver"   => "postgre",
+      "host"     => $this->config->{$this->alias}->address,
+      "port"     => $this->config->{$this->alias}->port,
+      "username" => $this->config->{$this->alias}->username,
+      "password" => $this->config->{$this->alias}->password,
+      "database" => $this->config->{$this->alias}->database,
+    );
+    $this->db = new \DibiConnection($arg);
   }
 
   public function isConnected(){
@@ -37,18 +35,6 @@ class Postgresql extends Element
    */
   public function close($signal){
     $this->log->info("Postgre disconnected.");
-  }
-
-  public function connect(){
-    $arg = array(
-      "driver"   => "postgre",
-      "host"     => $this->config->{$this->alias}->address,
-      "port"     => $this->config->{$this->alias}->port,
-      "username" => $this->config->{$this->alias}->username,
-      "password" => $this->config->{$this->alias}->password,
-      "database" => $this->config->{$this->alias}->database,
-    );
-    $this->db = new \DibiConnection($arg);
   }
 
   /**
