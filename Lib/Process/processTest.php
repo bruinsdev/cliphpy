@@ -1,5 +1,5 @@
 <?php
-namespace Cliphpy\Lib\Process;
+namespace Cliphpy\Lib;
 
 class ProcessTest extends \PHPUnit_Framework_TestCase{
 
