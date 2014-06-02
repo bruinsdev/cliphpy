@@ -26,7 +26,7 @@ return array(
     'cliphpy\lib\clielement' => '../Lib/CliElement/cliElement.php',
     'cliphpy\lib\dao\postgresql' => '../Lib/DAO/PostgreSQL/postgresql.php',
     'cliphpy\lib\cao\redis\configuration' => '../Lib/CAO/Redis/redisConfig.php',
-    'processtest' => '../Lib/Process/processTest.php',
+    'cliphpy\lib\processtest' => '../Lib/Process/processTest.php',
     'cliphpy\lib\dao\postgresql\configuration' => '../Lib/DAO/PostgreSQL/configuration.php',
     'testclielement' => '../Lib/CliElement/cliElementTest.php',
     'cliphpy\lib\dao\testpostgresql' => '../Lib/DAO/PostgreSQL/postgresqlTest.php',
