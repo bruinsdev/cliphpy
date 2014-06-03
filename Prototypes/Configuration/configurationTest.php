@@ -1,7 +1,7 @@
 <?php
-use Cliphpy\Prototypes\Configuration;
+namespace Cliphpy\Prototypes;
 
-class testConfiguration extends PHPUnit_Framework_TestCase
+class testConfiguration extends \PHPUnit_Framework_TestCase
 {
   /**
    * @use \Cliphpy\Prototypes\Configuration::__construct

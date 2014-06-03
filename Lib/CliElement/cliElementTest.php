@@ -1,10 +1,10 @@
 <?php
+namespace Cliphpy\Lib;
 use
-  Cliphpy\Lib\CliElement,
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
-class testCliElement extends PHPUnit_Framework_TestCase
+class testCliElement extends \PHPUnit_Framework_TestCase
 {
 
   /**

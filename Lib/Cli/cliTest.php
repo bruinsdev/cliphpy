@@ -1,9 +1,8 @@
 <?php
-use
-  Cliphpy\Lib\Cli,
-  Cliphpy\Prototypes\Configuration;
+namespace Cliphpy\Lib;
+use Cliphpy\Prototypes\Configuration;
 
-class CliTest extends PHPUnit_Framework_TestCase
+class CliTest extends \PHPUnit_Framework_TestCase
 {
 
   /**
