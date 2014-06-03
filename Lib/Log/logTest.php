@@ -1,7 +1,7 @@
 <?php
-use Cliphpy\Lib\Log;
+namespace Cliphpy\Lib;
 
-class LogTest extends PHPUnit_Framework_TestCase
+class LogTest extends \PHPUnit_Framework_TestCase
 {
 
   /**
