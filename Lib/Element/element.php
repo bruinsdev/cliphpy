@@ -43,8 +43,6 @@ abstract class Element
   protected $callerClass;
 
   public function __construct(){
-    declare(ticks = 1);
-    $this->initSignalHandler();
   }
 
   /**
@@ -110,11 +108,12 @@ abstract class Element
     return $this->idChild;
   }
 
-  private function initSignalHandler(){
+  public function initSignalHandler(){
+    declare(ticks = 1);
     $obj = $this;
     $handler = function($signal) use($obj){$obj->signalHandler($signal); };
-    pcntl_signal(SIGINT, $handler);
-    pcntl_signal(SIGTERM, $handler);
+    \pcntl_signal(SIGINT, $handler);
+    \pcntl_signal(SIGTERM, $handler);
   }
 
   /**
