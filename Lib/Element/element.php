@@ -42,9 +42,6 @@ abstract class Element
    */
   protected $callerClass;
 
-  public function __construct(){
-  }
-
   /**
    * @param Configuration $config
    */
@@ -108,12 +105,12 @@ abstract class Element
     return $this->idChild;
   }
 
-  public function initSignalHandler(){
+  private function initSignalHandler(){
     declare(ticks = 1);
     $obj = $this;
     $handler = function($signal) use($obj){$obj->signalHandler($signal); };
-    \pcntl_signal(SIGINT, $handler);
-    \pcntl_signal(SIGTERM, $handler);
+    pcntl_signal(SIGINT, $handler);
+    pcntl_signal(SIGTERM, $handler);
   }
 
   /**
