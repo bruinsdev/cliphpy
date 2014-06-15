@@ -7,10 +7,15 @@ class Configuration
   /**
    * @var string
    */
-  public $logDir = __DIR__ . "/../log";
+  public $logDir;
 
   /**
    * @var string
    */
-  public $pidDir = __DIR__ . "/../pid";
+  public $pidDir;
+
+  public function __construct(){
+    $this->logDir = __DIR__ . "/../log";
+    $this->pidDir = __DIR__ . "/../pid";
+  }
 }
