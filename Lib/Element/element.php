@@ -42,11 +42,6 @@ abstract class Element
    */
   protected $callerClass;
 
-  public function __construct(){
-    declare(ticks = 1);
-    $this->initSignalHandler();
-  }
-
   /**
    * @param Configuration $config
    */
@@ -111,6 +106,7 @@ abstract class Element
   }
 
   private function initSignalHandler(){
+    declare(ticks = 1);
     $obj = $this;
     $handler = function($signal) use($obj){$obj->signalHandler($signal); };
     pcntl_signal(SIGINT, $handler);

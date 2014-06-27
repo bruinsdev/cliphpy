@@ -18,12 +18,12 @@ class Redis extends Element
   /**
    * @var integer
    */
-  private $countGet = 1;
+  private $countGet = 0;
 
   /**
    * @var integer
    */
-  private $countSet = 1;
+  private $countSet = 0;
 
   public function close($signal){
     $this->disconnect();
@@ -71,8 +71,6 @@ class Redis extends Element
 
   /**
    * @return boolean
-   * @todo  move logging into upper level
-   * @todo  move checkconnection into upper level
    */
   public function flushAll(){
     $this->countGet = 0;
@@ -84,7 +82,9 @@ class Redis extends Element
    * @return float
    */
   public function getUsage(){
-    if ($this->countGet === 0 || $this->countSet === 0){
+    if (0 === $this->countGet ||
+        0 === $this->countSet
+    ){
       return 0;
     }
     $usage = ($this->countGet) / ($this->countSet);

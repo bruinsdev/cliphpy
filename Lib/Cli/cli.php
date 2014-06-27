@@ -124,6 +124,7 @@ class Cli extends CliElement
   }
 
   private function writePid(){
+    $this->checkPidDirectory();
     file_put_contents($this->pidFile, getmypid());
   }
 
@@ -146,5 +147,12 @@ class Cli extends CliElement
       }
     }
     return false;
+  }
+
+  private function checkPidDirectory(){
+    $pidDir = dirname($this->pidFile);
+    if (false === is_dir($pidDir)){
+      mkdir($pidDir, 0744, true);
+    }
   }
 }
