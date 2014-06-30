@@ -77,6 +77,10 @@ abstract class Element
     $this->log = $log;
   }
 
+  public function setDb($db){
+    $this->db = $db;
+  }
+
   /**
    * @return Log
    */
