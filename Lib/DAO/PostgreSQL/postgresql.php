@@ -57,7 +57,7 @@ class Postgresql extends Element
     return clone $this->db;
   }
 
-  protected function getVersion(){
+  public function getVersion(){
     $sql = "SELECT version()";
     $version = $this->db->fetchSingle($sql);
     $sql = "SELECT now() - pg_postmaster_start_time()";
