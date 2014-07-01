@@ -4,17 +4,11 @@ use Cliphpy\Prototypes\Configuration;
 
 class testRedis extends \PHPUnit_Framework_TestCase
 {
-
-
   /**
    * @var Redis
    */
   private $redis;
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis\Configuration
-   * @covers Cliphpy\Lib\CAO\Redis::connect
-   */
   public function testConnect(){
     $alias = "redis";
     $this->redis = new Redis;
@@ -34,9 +28,6 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $this->redis->connect();
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::isConnected
-   */
   public function testIsConnected(){
     $this->testConnect();
     $isConnected = $this->redis->isConnected();
@@ -44,10 +35,6 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $this->assertTrue($isConnected);
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::disconnect
-   * @covers Cliphpy\Lib\CAO\Redis::isConnected
-   */
   public function testDisconnect(){
     $this->testConnect();
     $this->redis->disconnect();
@@ -55,19 +42,12 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $this->assertFalse($isConnected);
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::flushAll
-   */
   public function testFlushAll(){
     $this->testConnect();
     $isFlushed = $this->redis->flushAll();
     $this->assertTrue($isFlushed);
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::getUsage
-   * @covers Cliphpy\Lib\CAO\Redis::flushAll
-   */
   public function testCountUsage(){
     $this->testConnect();
     $this->redis->FlushAll();
@@ -94,11 +74,6 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $this->assertEquals($usage, 0);
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::get
-   * @covers Cliphpy\Lib\CAO\Redis::caller
-   * @covers Cliphpy\Lib\CAO\Redis::generateKey
-   */
   public function testGet(){
     $this->testConnect();
     $value = $this->redis->get("_PHP_UNIT_TEST_KEY_");
@@ -106,13 +81,6 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $this->assertNull($value);
   }
 
-  /**
-   * @covers Cliphpy\Lib\CAO\Redis::set
-   * @covers Cliphpy\Lib\CAO\Redis::get
-   * @covers Cliphpy\Lib\CAO\Redis::caller
-   * @covers Cliphpy\Lib\CAO\Redis::generateKey
-   * @covers Cliphpy\Lib\CAO\Redis::flushAll
-   */
   public function testSet(){
     $this->testConnect();
     $saved = "_PHP_UNIT_TEST_VALUE_";
@@ -126,5 +94,18 @@ class testRedis extends \PHPUnit_Framework_TestCase
     $value2 = $this->redis->get($key1, $key2);
     $this->assertEquals($saved, $value2);
     $this->redis->flushAll();
+  }
+
+  /**
+   * @expectedException Exception
+   */
+  public function testGetVersionOne(){
+    $redis = new Redis;
+    $redis->getVersion();
+  }
+
+  public function testGetVersionTwo(){
+    $this->testConnect();
+    $this->redis->getVersion();
   }
 }
