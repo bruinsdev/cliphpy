@@ -1,9 +1,15 @@
 <?php
 namespace Cliphpy\Lib;
-use Cliphpy\Lib\CliElement;
+use Cliphpy\Lib\Element;
 
-class Process extends CliElement
+class Process extends Element
 {
+  /**
+   * @param  integer $signal
+   */
+  public function close($signal){
+    ;
+  }
 
   /**
    * @param  string $alias
@@ -24,9 +30,21 @@ class Process extends CliElement
   }
 
   /**
+   * @param  string $alias
+   */
+  public function initMongoDb($alias = "mongo"){
+    $this->{$alias} = new DAO\MongoDb;
+    $this->{$alias}->setAlias($alias);
+    $this->{$alias}->setConfig($this->config);
+  }
+
+  /**
    * @param array $options
    */
   public function setOptions($options){
+    if (false === is_array($options)){
+      throw new \Exception("options aren't array", __LINE__);
+    }
     $this->options = $options;
   }
 
