@@ -5,28 +5,39 @@ use Cliphpy\Prototypes\Configuration;
 class testPostgresql extends \PHPUnit_Framework_TestCase
 {
 
-  /**
-   * @cover Postgre::connect
-   * @cover Postgre::isConnected
-   * @cover Postgre::disconnect
-   */
+  private $postgre = null;
+
   public function testConnect(){
     $alias = "postgresql";
-    $testObj = new Postgresql;
-    $testObj->setAlias($alias);
+    $this->postgre = new Postgresql;
+    $this->postgre->setAlias($alias);
 
     $config = new Configuration;
     $config->{$alias} = new Postgresql\Configuration;
-    $testObj->setConfig($config);
-    $testObj->connect();
+    $this->postgre->setConfig($config);
+    $this->postgre->connect();
 
-    $this->assertTrue($testObj->isConnected());
-    $this->assertFalse($testObj->disconnect());
+    $this->assertTrue($this->postgre->isConnected());
+    $this->assertFalse($this->postgre->disconnect());
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
+  public function testClose(){
+    $this->testConnect();
+    $this->postgre->close(1);
+  }
+
+  public function testGetInstance(){
+    $this->testConnect();
+    $postgre = $this->postgre->getInstance();
+    $this->assertInstanceOf("\Cliphpy\Lib\DAO\Postgresql", $postgre);
+  }
+
+  public function testGetVersion(){
+    $this->testConnect();
+    $version = $this->postgre->getVersion();
+    $this->assertTrue(is_string($version));
+  }
+
   public function testMakePostgresqlArrayOne() {
     $testObj = new Postgresql;
     $input = array(3, 4);
@@ -35,9 +46,6 @@ class testPostgresql extends \PHPUnit_Framework_TestCase
     $this->assertEquals($result, $expected);
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
   public function testMakePostgresqlArrayTwo() {
     $testObj = new Postgresql;
     $input = array('Team1', 'Team2');
@@ -46,9 +54,6 @@ class testPostgresql extends \PHPUnit_Framework_TestCase
     $this->assertEquals($result, $expected);
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
   public function testMakePostgresqlArrayThree() {
     $testObj = new Postgresql;
     $input = array('Team"3', 'Tea""m4');
@@ -57,9 +62,6 @@ class testPostgresql extends \PHPUnit_Framework_TestCase
     $this->assertEquals($result, $expected);
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
   public function testMakePostgresqlArrayFour() {
     $testObj = new Postgresql;
     $input = array(4409);
@@ -68,9 +70,6 @@ class testPostgresql extends \PHPUnit_Framework_TestCase
     $this->assertEquals($result, $expected);
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
   public function testMakePostgresqlArrayFive() {
     $testObj = new Postgresql;
     $input = array(1, 'x', 2);
@@ -79,9 +78,6 @@ class testPostgresql extends \PHPUnit_Framework_TestCase
     $this->assertEquals($result, $expected);
   }
 
-  /**
-   * @cover Postgresql::makePostgreArray
-   */
   public function testMakePostgresqlArraySix() {
     $testObj = new Postgresql;
     $input = array("asdasd", "sdasdasda");
