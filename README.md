@@ -9,7 +9,7 @@ Install
 -------
 
 ```
-pecl install redis
+pecl install redis mongo
 npm install
 bower install
 grunt install
@@ -17,7 +17,8 @@ grunt install
 
 Developing
 ----------
-Just run Grunt. There you run autoloader regeneration, PHPUnit testing a watch changed files.
+Start PostgreSQL, Redis and Mong server at localhost and then just run Grunt.
+There you run autoloader regeneration, PHPUnit testing a watch changed files.
 
 ```
 grunt
