@@ -1,6 +1,9 @@
 <?php
 namespace Cliphpy\Lib;
 use
+  Cliphpy\Lib\CAO\Redis,
+  Cliphpy\Lib\DAO\MongoDb,
+  Cliphpy\Lib\DAO\Postgresql,
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
@@ -60,6 +63,9 @@ abstract class Element
    * @param string $alias
    */
   public function setAlias($alias = "alias"){
+    if (false === is_string($alias)){
+      throw new Exception("alias is not string", __LINE__);
+    }
     $this->alias = $alias;
   }
 
@@ -77,10 +83,6 @@ abstract class Element
     $this->log = $log;
   }
 
-  public function setDb($db){
-    $this->db = $db;
-  }
-
   /**
    * @return Log
    */
@@ -89,16 +91,33 @@ abstract class Element
   }
 
   /**
-   * @param stdClass $cache
+   * @param \Cliphpy\Lib\CAO\Redis $redis
    */
-  public function setCache($cache){
-    $this->cache = $cache;
+  public function setRedis(Redis $redis){
+    $this->redis = $redis;
+  }
+
+  /**
+   * @param Cliphpy\Lib\DAO\Postgresql $postgresql
+   */
+  public function setPostgresql(Postgresql $postgresql){
+    $this->postgresql = $postgresql;
+  }
+
+  /**
+   * @param Cliphpy\Lib\DAO\MongoDb $mongo [description]
+   */
+  public function setMongo(MongoDb $mongo){
+    $this->mongo = $mongo;
   }
 
   /**
    * @param integer $idChild
    */
   public function setIdChild($idChild){
+    if (false === is_int($idChild)){
+      throw new Exception("idChild is not integer", __LINE__);
+    }
     $this->idChild = $idChild;
   }
 
@@ -107,6 +126,24 @@ abstract class Element
    */
   public function getIdChild(){
     return $this->idChild;
+  }
+
+  /**
+   * @param  null|integer|string|array|object $obj
+   * @return string
+   */
+  public function getSumObject($obj){
+    return md5(json_encode($obj));
+  }
+
+  /**
+   * @param  null|integer|string|array|object $obj
+   * @return integer
+   */
+  public function getSumId($obj){
+    $md5sum = $this->getSumObject($obj);
+    $hash = base_convert($md5sum, 16, 10);
+    return substr($hash, 0, 9);
   }
 
   private function initSignalHandler(){
@@ -147,5 +184,5 @@ abstract class Element
   /**
    * @param  string $signal
    */
-  abstract function close($signal);
+  abstract public function close($signal);
 }
