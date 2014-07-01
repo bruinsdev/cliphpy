@@ -25,6 +25,7 @@ return array(
     'cliphpy\lib\process' => '../Lib/Process/process.php',
     'cliphpy\lib\cao\testredis' => '../Lib/CAO/Redis/redisTest.php',
     'cliphpy\lib\clielement' => '../Lib/CliElement/cliElement.php',
+    'cliphpy\lib\exception' => '../Lib/Exception/exception.php',
     'cliphpy\lib\dao\postgresql' => '../Lib/DAO/PostgreSQL/postgresql.php',
     'cliphpy\lib\cao\redis\configuration' => '../Lib/CAO/Redis/redisConfig.php',
     'cliphpy\lib\dao\testmongodb' => '../Lib/DAO/MongoDb/mongodbTest.php',
