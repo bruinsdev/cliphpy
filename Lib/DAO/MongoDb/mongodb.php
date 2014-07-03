@@ -12,11 +12,6 @@ class MongoDb extends Element
   protected $mongo;
 
   /**
-   * @var MongoDB
-   */
-  protected $db;
-
-  /**
    * @param  integer $signal
    */
   public function close($signal){
@@ -59,5 +54,12 @@ class MongoDb extends Element
         $status["retval"]["uptime"] / 60,
         $status["retval"]["uptime"] % 60);
     }
+  }
+
+  /**
+   * @return boolean
+   */
+  public function isConnected(){
+    return $this->mongo->connected;
   }
 }
