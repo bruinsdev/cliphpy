@@ -57,7 +57,14 @@ class Postgresql extends Element
    * @return \Cliphpy\Lib\DAO\Postgresql
    */
   public function getInstance(){
-    return clone $this;
+    return $this;
+  }
+
+  /**
+   * @return \DibiConnection
+   */
+  public function getDatabase(){
+    return $this->db;
   }
 
   /**
