@@ -105,10 +105,10 @@ abstract class Element
   }
 
   /**
-   * @param Cliphpy\Lib\DAO\MongoDb $mongo [description]
+   * @param Cliphpy\Lib\DAO\MongoDb $mongo
    */
-  public function setMongo(MongoDb $mongo){
-    $this->mongo = $mongo;
+  public function setMongoDb(MongoDb $mongodb){
+    $this->mongodb = $mongodb;
   }
 
   /**

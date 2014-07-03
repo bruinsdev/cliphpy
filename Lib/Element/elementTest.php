@@ -49,7 +49,7 @@ class testElement extends \PHPUnit_Framework_TestCase
   public function testSetMongo(){
     $testObj = new ElementExt;
     $mongo   = new \Cliphpy\Lib\DAO\MongoDb;
-    $testObj->setMongo($mongo);
+    $testObj->setMongoDb($mongo);
   }
 
   public function testGetSumId(){
