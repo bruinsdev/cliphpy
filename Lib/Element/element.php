@@ -126,7 +126,7 @@ abstract class Element
    */
   public function setIdChild($idChild){
     if (false === is_int($idChild)){
-      throw new Exception("idChild is not integer", __LINE__);
+      throw new Exception("idChild isn't integer", __LINE__);
     }
     $this->idChild = $idChild;
   }
