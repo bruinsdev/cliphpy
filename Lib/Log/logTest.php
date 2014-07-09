@@ -4,15 +4,6 @@ namespace Cliphpy\Lib;
 class LogTest extends \PHPUnit_Framework_TestCase
 {
 
-  /**
-   * @covers Cliphpy\Lib\Log::setLogDir
-   * @covers Cliphpy\Lib\Log::info
-   * @covers Cliphpy\Lib\Log::error
-   * @covers Cliphpy\Lib\Log::debug
-   * @covers Cliphpy\Lib\Log::write
-   * @covers Cliphpy\Lib\Log::writeLog
-   * @covers Cliphpy\Lib\Log::__destruct
-   */
   public function testCreateLogFiles(){
     $testObj = new Log;
     $logDir = __DIR__ . "/../../test/tmp";
@@ -52,5 +43,10 @@ class LogTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals(84, $infoFileSize2);
     $this->assertEquals(86, $errorFileSize2);
     $this->assertEquals(86, $debugFileSize2);
+  }
+
+  public function testClose(){
+    $testObj = new Log;
+    $testObj->close(1);
   }
 }

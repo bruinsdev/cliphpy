@@ -1,6 +1,9 @@
 <?php
 namespace Cliphpy\Lib;
 use
+  Cliphpy\Lib\CAO\Redis,
+  Cliphpy\Lib\DAO\MongoDb,
+  Cliphpy\Lib\DAO\Postgresql,
   Cliphpy\Lib\Log,
   Cliphpy\Prototypes\Configuration;
 
@@ -16,11 +19,6 @@ abstract class Element
    * @var Log
    */
   protected $log;
-
-  /**
-   * @var Cache
-   */
-  protected $cache;
 
   /**
    * @var string
@@ -43,6 +41,11 @@ abstract class Element
   protected $callerClass;
 
   /**
+   * @var object
+   */
+  protected $dao;
+
+  /**
    * @param Configuration $config
    */
   public function setConfig(Configuration $config){
@@ -60,6 +63,9 @@ abstract class Element
    * @param string $alias
    */
   public function setAlias($alias = "alias"){
+    if (false === is_string($alias)){
+      throw new Exception("alias is not string", __LINE__);
+    }
     $this->alias = $alias;
   }
 
@@ -85,16 +91,43 @@ abstract class Element
   }
 
   /**
-   * @param stdClass $cache
+   * @param \Cliphpy\Lib\CAO\Redis $redis
    */
-  public function setCache($cache){
-    $this->cache = $cache;
+  public function setRedis(Redis $redis){
+    $this->redis = $redis;
+  }
+
+  /**
+   * @param Cliphpy\Lib\DAO\Postgresql $postgresql
+   */
+  public function setPostgresql(Postgresql $postgresql){
+    $this->postgresql = $postgresql;
+  }
+
+  /**
+   * @param object $dao
+   */
+  public function setDao($dao){
+    if (false === is_object($dao)){
+      throw new Exception("dao isn't object", __LINE__);
+    }
+    $this->dao = $dao;
+  }
+
+  /**
+   * @param Cliphpy\Lib\DAO\MongoDb $mongo
+   */
+  public function setMongoDb(MongoDb $mongodb){
+    $this->mongodb = $mongodb;
   }
 
   /**
    * @param integer $idChild
    */
   public function setIdChild($idChild){
+    if (false === is_int($idChild)){
+      throw new Exception("idChild isn't integer", __LINE__);
+    }
     $this->idChild = $idChild;
   }
 
@@ -103,6 +136,24 @@ abstract class Element
    */
   public function getIdChild(){
     return $this->idChild;
+  }
+
+  /**
+   * @param  null|integer|string|array|object $obj
+   * @return string
+   */
+  public function getSumObject($obj){
+    return md5(json_encode($obj));
+  }
+
+  /**
+   * @param  null|integer|string|array|object $obj
+   * @return double
+   */
+  public function getSumId($obj){
+    $md5sum = $this->getSumObject($obj);
+    $hash = base_convert($md5sum, 16, 10);
+    return (double)substr($hash, 0, 9);
   }
 
   private function initSignalHandler(){
@@ -143,5 +194,5 @@ abstract class Element
   /**
    * @param  string $signal
    */
-  abstract function close($signal);
+  abstract public function close($signal);
 }

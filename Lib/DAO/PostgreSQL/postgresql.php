@@ -31,10 +31,10 @@ class Postgresql extends Element
   }
 
   /**
-   * @param  string $signal
+   * @param  integer $signal
    */
   public function close($signal){
-    $this->log->info("Postgre disconnected.");
+    ;
   }
 
   /**
@@ -42,6 +42,9 @@ class Postgresql extends Element
    */
   public function disconnect(){
     $this->db->disconnect();
+    if (is_object($this->log)){
+      $this->log->info("Postgre disconnected.");
+    }
     return $this->db->isConnected();
   }
 
@@ -51,19 +54,29 @@ class Postgresql extends Element
   }
 
   /**
-   * @return DibiConnection
+   * @return \Cliphpy\Lib\DAO\Postgresql
    */
   public function getInstance(){
-    return clone $this->db;
+    return $this;
   }
 
-  protected function getVersion(){
+  /**
+   * @return \DibiConnection
+   */
+  public function getDatabase(){
+    return $this->db;
+  }
+
+  /**
+   * @return string
+   */
+  public function getVersion(){
     $sql = "SELECT version()";
     $version = $this->db->fetchSingle($sql);
     $sql = "SELECT now() - pg_postmaster_start_time()";
     $uptime = $this->db->fetchSingle($sql);
     $log = "%s, uptime %s";
-    $this->log->info(sprintf($log, $version, $uptime));
+    return sprintf($log, $version, $uptime);
   }
 
   /**

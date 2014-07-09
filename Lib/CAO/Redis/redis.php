@@ -1,6 +1,8 @@
 <?php
 namespace Cliphpy\Lib\CAO;
-use Cliphpy\Lib\Element;
+use
+  Cliphpy\Lib\Element,
+  Cliphpy\Lib\Exception;
 
 class Redis extends Element
 {
@@ -106,18 +108,20 @@ class Redis extends Element
     return false;
   }
 
-  public function checkConnection(){
-    try {
+  /**
+   * @return string
+   */
+  public function getVersion(){
+    if (is_null($this->redis)){
+      throw new Exception("Error execute on Redis, disconnected", __LINE__);
+    } else {
       $info = $this->redis->info();
       $msg = "Redis %s, uptime %d min %d sec, memory %s, memory peak %s, " .
         "memory fragmentation %.02f";
-      $this->log->info(sprintf($msg, $info["redis_version"],
+      return sprintf($msg, $info["redis_version"],
         ($info["uptime_in_seconds"] / 60), ($info["uptime_in_seconds"] % 60),
         $info["used_memory_human"], $info["used_memory_peak_human"],
-        $info["mem_fragmentation_ratio"]));
-      $this->log->write();
-    } catch (\RedisException $e){
-      $this->log->error(json_encode($e));
+        $info["mem_fragmentation_ratio"]);
     }
   }
 
@@ -131,7 +135,7 @@ class Redis extends Element
     if (is_array($key) && 1 === count($key)){
       $key = $key[0];
     }
-    if (is_string($key) || is_int($key)){
+    if (false === is_array($key)){
       $key = array($key);
     }
     $callerClass = str_replace("\\", ":", $this->callerClass);

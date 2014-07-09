@@ -5,7 +5,7 @@ if ("cli" !== PHP_SAPI) {
   die("This can only be run from the CLI!");
 }
 
-class Cli extends CliElement
+class Cli extends Element
 {
 
   /**
@@ -37,6 +37,16 @@ class Cli extends CliElement
    * @var string
    */
   private $usage;
+
+  /**
+   * @param  integer $signal
+   */
+  public function close($signal){
+    if (true === is_object($this->log)){
+      $this->log->error("Terminated: " . $signal);
+      $this->log->close($signal);
+    }
+  }
 
   /**
    * @param array
