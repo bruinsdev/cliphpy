@@ -135,7 +135,7 @@ class Redis extends Element
     if (is_array($key) && 1 === count($key)){
       $key = $key[0];
     }
-    if (is_string($key) || is_int($key)){
+    if (false === is_array($key)){
       $key = array($key);
     }
     $callerClass = str_replace("\\", ":", $this->callerClass);
