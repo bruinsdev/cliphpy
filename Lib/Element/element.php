@@ -41,6 +41,11 @@ abstract class Element
   protected $callerClass;
 
   /**
+   * @var object
+   */
+  protected $dao;
+
+  /**
    * @param Configuration $config
    */
   public function setConfig(Configuration $config){
@@ -97,6 +102,16 @@ abstract class Element
    */
   public function setPostgresql(Postgresql $postgresql){
     $this->postgresql = $postgresql;
+  }
+
+  /**
+   * @param object $dao
+   */
+  public function setDao($dao){
+    if (false === is_object($dao)){
+      throw new Exception("dao isn't object", __LINE__);
+    }
+    $this->dao = $dao;
   }
 
   /**
