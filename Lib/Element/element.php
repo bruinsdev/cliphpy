@@ -21,11 +21,6 @@ abstract class Element
   protected $log;
 
   /**
-   * @var Cache
-   */
-  protected $cache;
-
-  /**
    * @var string
    */
   protected $alias;
