@@ -148,12 +148,12 @@ abstract class Element
 
   /**
    * @param  null|integer|string|array|object $obj
-   * @return integer
+   * @return double
    */
   public function getSumId($obj){
     $md5sum = $this->getSumObject($obj);
     $hash = base_convert($md5sum, 16, 10);
-    return substr($hash, 0, 9);
+    return (double)substr($hash, 0, 9);
   }
 
   private function initSignalHandler(){
