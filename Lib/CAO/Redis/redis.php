@@ -72,6 +72,15 @@ class Redis extends Element
   }
 
   /**
+   * @param  string $channel
+   * @param  string $message
+   * @return integer
+   */
+  public function publish($channel, $message){
+    return $this->redis->publish($channel, $message);
+  }
+
+  /**
    * @return boolean
    */
   public function flushAll(){
