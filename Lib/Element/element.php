@@ -46,6 +46,11 @@ abstract class Element
   protected $dao;
 
   /**
+   * @var double
+   */
+  private $startTimestamp;
+
+  /**
    * @param Configuration $config
    */
   public function setConfig(Configuration $config){
@@ -154,6 +159,33 @@ abstract class Element
     $md5sum = $this->getSumObject($obj);
     $hash = base_convert($md5sum, 16, 10);
     return (double)substr($hash, 0, 9);
+  }
+
+  protected function start(){
+    $this->caller();
+    $key = $this->getDelayKey();
+    $this->startTimestamp[$key] = microtime(true);
+  }
+
+  protected function stop(){
+    $this->caller();
+    $key = $this->getDelayKey();
+    $msg = "DELAY: %s:%s -> %0.3f s";
+    $log = sprintf($msg, $this->callerClass, $this->callerFunction,
+      (microtime(true) - $this->startTimestamp[$key]));
+    if (is_object($this->log)){
+      $this->log->debug($log);
+      $this->log->write();
+    } else {
+      echo $log;
+    }
+  }
+
+  /**
+   * @return string
+   */
+  private function getDelayKey(){
+    return sprintf("%s|%s", $this->callerClass, $this->callerFunction);
   }
 
   private function initSignalHandler(){
