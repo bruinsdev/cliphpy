@@ -177,7 +177,7 @@ abstract class Element
       $this->log->debug($log);
       $this->log->write();
     } else {
-      echo $log;
+      echo $log . PHP_EOL;
     }
   }
 
