@@ -83,6 +83,15 @@ class Redis extends Element
   /**
    * @return boolean
    */
+  public function flush(){
+    $this->countGet = 0;
+    $this->countSet = 0;
+    return $this->redis->flushDB();
+  }
+
+  /**
+   * @return boolean
+   */
   public function flushAll(){
     $this->countGet = 0;
     $this->countSet = 0;
