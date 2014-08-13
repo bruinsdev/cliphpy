@@ -12,11 +12,13 @@ class Postgresql extends Element
   public function connect(){
     $arg = array(
       "driver"   => "postgre",
-      "host"     => $this->config->{$this->alias}->address,
-      "port"     => $this->config->{$this->alias}->port,
-      "username" => $this->config->{$this->alias}->username,
-      "password" => $this->config->{$this->alias}->password,
-      "database" => $this->config->{$this->alias}->database,
+      "host"       => $this->config->{$this->alias}->address,
+      "port"       => $this->config->{$this->alias}->port,
+      "username"   => $this->config->{$this->alias}->username,
+      "password"   => $this->config->{$this->alias}->password,
+      "database"   => $this->config->{$this->alias}->database,
+      "persistent" => $this->config->{$this->alias}->persistent,
+      "sslmode"    => $this->config->{$this->alias}->ssl,
     );
     $this->db = new \DibiConnection($arg);
   }

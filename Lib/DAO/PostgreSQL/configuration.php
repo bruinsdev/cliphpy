@@ -33,4 +33,15 @@ class Configuration
    * @var string
    */
   public $name = "Cliphpy";
+
+  /**
+   * @var boolean
+   */
+  public $persistent = false;
+
+  /**
+   * Possible values is disable, prefer, allow, require, verify-ca, verify-full
+   * @var string
+   */
+  public $ssl = "allow";
 }
