@@ -81,6 +81,13 @@ class Redis extends Element
   }
 
   /**
+   * @return string
+   */
+  public function getKey(){
+    return $this->key;
+  }
+
+  /**
    * @return boolean
    */
   public function flush(){
@@ -156,8 +163,15 @@ class Redis extends Element
     if (false === is_array($key)){
       $key = array($key);
     }
-    $callerClass = str_replace("\\", ":", $this->callerClass);
-    $caller = array($callerClass, $this->callerFunction);
-    $this->key = implode(":", array_merge($caller, $key));
+
+    if (true === is_array($key) ||
+        strpos($key, ":") === false
+    ){
+      $callerClass = str_replace("\\", ":", $this->callerClass);
+      $caller = array($callerClass, $this->callerFunction);
+      $this->key = implode(":", array_merge($caller, $key));
+    } else {
+      $this->key = $key;
+    }
   }
 }
