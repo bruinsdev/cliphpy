@@ -182,6 +182,27 @@ abstract class Element
   }
 
   /**
+   * @param  Object $object
+   * @return array
+   */
+  protected function checkArray($object){
+    if (false === is_array($object)){
+      $tmp     = clone $object;
+      $array   = array();
+      $array[] = $tmp;
+    } else {
+      $array = $object;
+    }
+    return $array;
+  }
+
+  protected function caller(){
+    $trace = debug_backtrace();
+    $this->callerFunction = $trace[2]["function"];
+    $this->callerClass = $trace[2]["class"];
+  }
+
+  /**
    * @return string
    */
   private function getDelayKey(){
@@ -215,12 +236,6 @@ abstract class Element
     }
     $this->close($signal);
     exit;
-  }
-
-  protected function caller(){
-    $trace = debug_backtrace();
-    $this->callerFunction = $trace[2]["function"];
-    $this->callerClass = $trace[2]["class"];
   }
 
   /**
