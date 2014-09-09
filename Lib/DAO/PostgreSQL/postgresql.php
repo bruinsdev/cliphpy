@@ -90,8 +90,9 @@ class Postgresql extends Element
     settype($set, 'array');
     $result = array();
     switch ($type){
-      case "character varying":
-      case "text":
+      case "character varying" :
+      case "text"              :
+      case "varchar"           :
         $quoting = true;
         break;
       default:
