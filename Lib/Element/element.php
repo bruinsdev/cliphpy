@@ -46,6 +46,11 @@ abstract class Element
   protected $dao;
 
   /**
+   * @var double
+   */
+  private $startTimestamp;
+
+  /**
    * @param Configuration $config
    */
   public function setConfig(Configuration $config){
@@ -156,6 +161,54 @@ abstract class Element
     return (double)substr($hash, 0, 9);
   }
 
+  protected function start(){
+    $this->caller();
+    $key = $this->getDelayKey();
+    $this->startTimestamp[$key] = microtime(true);
+  }
+
+  protected function stop(){
+    $this->caller();
+    $key = $this->getDelayKey();
+    $msg = "DELAY: %s:%s -> %0.3f s";
+    $log = sprintf($msg, $this->callerClass, $this->callerFunction,
+      (microtime(true) - $this->startTimestamp[$key]));
+    if (is_object($this->log)){
+      $this->log->debug($log);
+      $this->log->write();
+    } else {
+      echo $log . PHP_EOL;
+    }
+  }
+
+  /**
+   * @param  Object $object
+   * @return array
+   */
+  protected function checkArray($object){
+    if (false === is_array($object)){
+      $tmp     = clone $object;
+      $array   = array();
+      $array[] = $tmp;
+    } else {
+      $array = $object;
+    }
+    return $array;
+  }
+
+  protected function caller(){
+    $trace = debug_backtrace();
+    $this->callerFunction = $trace[2]["function"];
+    $this->callerClass = $trace[2]["class"];
+  }
+
+  /**
+   * @return string
+   */
+  private function getDelayKey(){
+    return sprintf("%s|%s", $this->callerClass, $this->callerFunction);
+  }
+
   private function initSignalHandler(){
     declare(ticks = 1);
     $obj = $this;
@@ -183,12 +236,6 @@ abstract class Element
     }
     $this->close($signal);
     exit;
-  }
-
-  protected function caller(){
-    $trace = debug_backtrace();
-    $this->callerFunction = $trace[2]["function"];
-    $this->callerClass = $trace[2]["class"];
   }
 
   /**

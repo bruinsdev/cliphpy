@@ -5,6 +5,10 @@ use Cliphpy\Lib\Element;
 class Process extends Element
 {
   /**
+   * @var array
+   */
+  protected $options;
+  /**
    * @param  integer $signal
    */
   public function close($signal){

@@ -16,6 +16,7 @@
 
 return array(
     'cliphpy\lib\cli' => '../Lib/Cli/cli.php',
+    'cliphpy\lib\dao\model' => '../Lib/DAO/Model/dao.php',
     'cliphpy\lib\log' => '../Lib/Log/log.php',
     'cliphpy\lib\cao\redis' => '../Lib/CAO/Redis/redis.php',
     'cliphpy\lib\clitest' => '../Lib/Cli/cliTest.php',
