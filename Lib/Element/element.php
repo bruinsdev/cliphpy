@@ -203,6 +203,14 @@ abstract class Element
   }
 
   /**
+   * @param  array $array
+   * @return \stdClass
+   */
+  protected function convertToObject($array){
+    return json_decode(json_encode($array));
+  }
+
+  /**
    * @return string
    */
   private function getDelayKey(){
