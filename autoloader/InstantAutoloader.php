@@ -62,13 +62,13 @@ if (class_exists("InstantAutoloader")) {
  */
 class InstantAutoloader
 {
-    
+
     const
     /**
      * The name of the class constructor is classConstructor().
      */
     CLASS_CONSTRUCTOR = 'classConstructor';
-    
+
     private
     /**
      * @var string
@@ -108,7 +108,7 @@ class InstantAutoloader
 
     /**
      * Includes all class paths
-     * 
+     *
      * You can use this as an alternative to the autoload mechanism. This
      * simply includes all classes without any autoloader.
      *
@@ -144,7 +144,7 @@ class InstantAutoloader
     public function __autoload($class)
     {
         $this->_normalizeClass($class);
-        
+
         /*
          * spl_autoload_call() runs the complete stack,
          * even though the class is already defined by
@@ -153,7 +153,7 @@ class InstantAutoloader
         if (
             class_exists($class, false)
             || interface_exists($class, false)
-            || trait_exists($class, false)
+            || (function_exists('trait_exists') && trait_exists($class, false))
         ) {
             return;
 
@@ -162,9 +162,9 @@ class InstantAutoloader
             return;
 
         }
-        
+
         $this->_requirePath($this->_index[$class]);
-        
+
         $this->_callClassConstructor($class, self::CLASS_CONSTRUCTOR);
     }
 
@@ -198,7 +198,7 @@ class InstantAutoloader
     {
         $class = strtolower($class);
     }
-    
+
     /**
      * Calls the class constructor
      *
@@ -217,13 +217,13 @@ class InstantAutoloader
             return false;
 
         }
-        
+
         $constructor = $reflectionClass->getMethod($constructorName);
         if (! $constructor->isStatic()) {
             return false;
 
         }
-        
+
         if ($reflectionClass->isTrait()) {
             return false;
 
