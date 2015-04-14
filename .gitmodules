@@ -1,3 +1,6 @@
 [submodule "gitsubmodule/dibi"]
 	path = gitsubmodule/dibi
 	url = https://github.com/dg/dibi.git
+[submodule "gitsubmodule/raven-php"]
+	path = gitsubmodule/raven-php
+	url = https://github.com/getsentry/raven-php.git

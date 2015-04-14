@@ -5,6 +5,7 @@ use
   Cliphpy\Lib\DAO\MongoDb,
   Cliphpy\Lib\DAO\Postgresql,
   Cliphpy\Lib\Log,
+  Cliphpy\Lib\Sentry,
   Cliphpy\Prototypes\Configuration;
 
 abstract class Element
@@ -44,6 +45,11 @@ abstract class Element
    * @var object
    */
   protected $dao;
+
+  /**
+   * @var Object
+   */
+  protected $sentry;
 
   /**
    * @var double
@@ -127,6 +133,13 @@ abstract class Element
   }
 
   /**
+   * @param Cliphpy\Lib\Sentry $sentry
+   */
+  public function setSentry(Sentry $sentry){
+    $this->sentry = $sentry;
+  }
+
+  /**
    * @param integer $idChild
    */
   public function setIdChild($idChild){
@@ -200,6 +213,14 @@ abstract class Element
     $trace = debug_backtrace();
     $this->callerFunction = $trace[2]["function"];
     $this->callerClass = $trace[2]["class"];
+  }
+
+  /**
+   * @param  array $array
+   * @return \stdClass
+   */
+  protected function convertToObject($array){
+    return json_decode(json_encode($array));
   }
 
   /**

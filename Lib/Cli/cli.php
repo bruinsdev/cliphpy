@@ -63,8 +63,8 @@ class Cli extends Element
    */
   public function getOptions(){
     return array(
+      "long"  => $this->longOptions,
       "short" => $this->shortOptions,
-      "long" => $this->longOptions,
     );
   }
 

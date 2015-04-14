@@ -27,6 +27,9 @@ class Redis extends Element
    */
   private $countSet = 0;
 
+  /**
+   * @param  integer $signal
+   */
   public function close($signal){
     $this->disconnect();
     $this->log->info("Redis disconnected.");
@@ -69,6 +72,52 @@ class Redis extends Element
     $this->caller();
     $this->generateKey($key);
     return $this->redis->set($this->key, serialize($value));
+  }
+
+  /**
+   * @param  string|boolean|array|object $value
+   * @param  integer $score
+   * @param  string|array|null $key
+   * @return integer
+   */
+  public function zadd($value, $score, $key = null){
+    $this->caller();
+    $this->generateKey($key);
+    return $this->redis->zadd($this->key, $score, serialize($value));
+  }
+
+  /**
+   * @param  string|boolean|array|object $value
+   * @param  string|array|null $key
+   * @return integer
+   */
+  public function zrem($value, $key = null){
+    $this->caller();
+    $this->generateKey($key);
+    return $this->redis->zrem($this->key, $value);
+  }
+
+  /**
+   * @param  integer $from
+   * @param  integer $to
+   * @param  string|array|null  $key
+   * @return array
+   */
+  public function zrange($from = 0, $to = -1, $key = null){
+    $this->caller();
+    $this->generateKey($key);
+    return $this->redis->zrange($this->key, $from, $to);
+  }
+
+  /**
+   * @param  string|array|null  $key
+   * @param  integer $timeout
+   * @return boolean
+   */
+  public function pexpire($key = null, $timeout = 1000){
+    $this->caller();
+    $this->generateKey($key);
+    return $this->redis->pexpire($this->key, $timeout);
   }
 
   /**
