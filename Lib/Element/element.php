@@ -5,6 +5,7 @@ use
   Cliphpy\Lib\DAO\MongoDb,
   Cliphpy\Lib\DAO\Postgresql,
   Cliphpy\Lib\Log,
+  Cliphpy\Lib\Sentry,
   Cliphpy\Prototypes\Configuration;
 
 abstract class Element
@@ -44,6 +45,11 @@ abstract class Element
    * @var object
    */
   protected $dao;
+
+  /**
+   * @var Object
+   */
+  protected $sentry;
 
   /**
    * @var double
@@ -124,6 +130,13 @@ abstract class Element
    */
   public function setMongoDb(MongoDb $mongodb){
     $this->mongodb = $mongodb;
+  }
+
+  /**
+   * @param Cliphpy\Lib\Sentry $sentry
+   */
+  public function setSentry(Sentry $sentry){
+    $this->sentry = $sentry;
   }
 
   /**
