@@ -30,6 +30,11 @@ class Process extends Element
   protected $uSleep = 0;
 
   /**
+   * @var float
+   */
+  private $loopTime = 0.0;
+
+  /**
    * @param  integer $signal
    */
   public function close($signal){
@@ -85,7 +90,8 @@ class Process extends Element
       $this->startUtime = microtime(true);
       $this->runLoop();
       $this->endUtime = microtime(true);
-      $this->uSleep = $this->utime - ($this->endUtime - $this->startUtime);
+      $this->loopTime = $this->endUtime - $this->startUtime;
+      $this->uSleep = $this->utime - $this->loopTime;
 
       if ($this->uSleep > 0){
         usleep($this->uSleep * 1000);
@@ -95,5 +101,12 @@ class Process extends Element
 
   public function runLoop(){
     throw new Exception("Process method runLoop() - change it.", 3);
+  }
+
+  /**
+   * @return float
+   */
+  public function getLoopTime(){
+    return $this->loopTime;
   }
 }
