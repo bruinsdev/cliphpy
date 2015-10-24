@@ -151,7 +151,9 @@ class Cli extends Element
   }
 
   public function removePid(){
-    unlink($this->pidFile);
+    if (is_file($this->pidFile)){
+      unlink($this->pidFile);
+    }
   }
 
   /**
