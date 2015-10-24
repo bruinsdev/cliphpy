@@ -10,6 +10,31 @@ class Process extends Element
   protected $options;
 
   /**
+   * @var float
+   */
+  protected $utime = null;
+
+  /**
+   * @var float
+   */
+  protected $startUtime = null;
+
+  /**
+   * @var float
+   */
+  protected $endUtime = null;
+
+  /**
+   * @var float
+   */
+  protected $uSleep = 0;
+
+  /**
+   * @var float
+   */
+  private $loopTime = 0.0;
+
+  /**
    * @param  integer $signal
    */
   public function close($signal){
@@ -46,10 +71,7 @@ class Process extends Element
   /**
    * @param array $options
    */
-  public function setOptions($options){
-    if (false === is_array($options)){
-      throw new \Exception("options aren't array", __LINE__);
-    }
+  public function setOptions(array $options){
     $this->options = $options;
   }
 
@@ -58,5 +80,33 @@ class Process extends Element
    */
   public function getOptions(){
     return $this->options;
+  }
+
+  public function runInLoop(){
+    if (is_null($this->utime)){
+      throw new Exception("Process attribute utime is null.", 2);
+    }
+    do {
+      $this->startUtime = microtime(true);
+      $this->runLoop();
+      $this->endUtime = microtime(true);
+      $this->loopTime = $this->endUtime - $this->startUtime;
+      $this->uSleep = $this->utime - $this->loopTime;
+
+      if ($this->uSleep > 0){
+        usleep($this->uSleep * 1000);
+      }
+    } while (true);
+  }
+
+  public function runLoop(){
+    throw new Exception("Process method runLoop() - change it.", 3);
+  }
+
+  /**
+   * @return float
+   */
+  public function getLoopTime(){
+    return $this->loopTime;
   }
 }

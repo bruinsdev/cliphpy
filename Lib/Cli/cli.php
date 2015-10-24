@@ -36,6 +36,11 @@ class Cli extends Element
   /**
    * @var string
    */
+  private $fileName;
+
+  /**
+   * @var string
+   */
   private $usage;
 
   /**
@@ -93,6 +98,13 @@ class Cli extends Element
     return $this->name;
   }
 
+  /**
+   * @param string $fileName
+   */
+  public function setFileName($fileName){
+    $this->fileName = $fileName;
+  }
+
   public function checkChild(){
     if (isset($this->options["child"])){
       $this->idChild = (int) $this->options["child"];
@@ -139,7 +151,9 @@ class Cli extends Element
   }
 
   public function removePid(){
-    unlink($this->pidFile);
+    if (is_file($this->pidFile)){
+      unlink($this->pidFile);
+    }
   }
 
   /**
@@ -148,13 +162,9 @@ class Cli extends Element
   private function checkRunning(){
     if (is_file($this->pidFile)){
       $prevPid = (int) trim(file_get_contents($this->pidFile));
-      $cmd = sprintf("ps -p %d -o pid=", $prevPid);
+      $cmd = sprintf("ps ax | grep %d | grep %s", $prevPid, $this->fileName);
       $test = (int) trim(exec($cmd));
-      if ($prevPid === $test){
-        return true;
-      } else {
-        return false;
-      }
+      return ($prevPid === $test);
     }
     return false;
   }
