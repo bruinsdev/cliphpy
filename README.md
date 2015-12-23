@@ -1,7 +1,7 @@
 cliphpy
 =======
 
-##### version 0.2.1
+##### version 0.3.0
 
 Cliphpy is a CLI PHP Framework.
 
@@ -17,7 +17,7 @@ grunt install
 
 Developing
 ----------
-Start PostgreSQL, Redis and Mong server at localhost and then just run Grunt.
+Start PostgreSQL, Redis and Mongo server at localhost and then just run Grunt.
 There you run autoloader regeneration, PHPUnit testing a watch changed files.
 
 ```

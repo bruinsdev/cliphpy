@@ -123,4 +123,13 @@ class Postgresql extends Element
     }
     return $return;
   }
+
+  /**
+   * @param DibiException $e
+   */
+  protected function catchException(\DibiException $e){
+    if (property_exists($this, "sentry")){
+      $this->sentry->captureException($e);
+    }
+  }
 }

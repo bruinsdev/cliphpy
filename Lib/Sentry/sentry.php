@@ -36,7 +36,7 @@ class Sentry extends Element
     return array(
       "tags" => array(
         "php_version" => phpversion(),
-        "environment" => $this->config->environment,
+        "environment" => $this->config->getEnvironment(),
       ),
     );
   }
