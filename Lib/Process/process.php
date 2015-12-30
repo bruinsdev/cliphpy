@@ -90,7 +90,7 @@ class Process extends Element
       $this->startUtime = microtime(true);
       $this->runLoop();
       $this->endUtime = microtime(true);
-      $this->loopTime = $this->endUtime - $this->startUtime;
+      $this->loopTime = ( $this->endUtime - $this->startUtime ) * 1000;
       $this->uSleep = $this->utime - $this->loopTime;
 
       if ($this->uSleep > 0){

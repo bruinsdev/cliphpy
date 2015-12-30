@@ -1,6 +1,6 @@
 {
   "name": "CliPHPy",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CLI PHP framework",
   "dependencies": {
     "php-unit": "https://github.com/sebastianbergmann/phpunit.git",
