@@ -23,6 +23,9 @@ class Postgresql extends Element
     $this->db = new \DibiConnection($arg);
   }
 
+  /**
+   * @return boolean
+   */
   public function isConnected(){
     try {
       return (bool) $this->db->fetchSingle("SELECT 1");
@@ -128,7 +131,7 @@ class Postgresql extends Element
    * @param DibiException $e
    */
   protected function catchException(\DibiException $e){
-    if (property_exists($this, "sentry")){
+    if (true === isset($this->sentry)){
       $this->sentry->captureException($e);
     }
   }
