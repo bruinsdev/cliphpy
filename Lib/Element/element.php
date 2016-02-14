@@ -241,6 +241,14 @@ abstract class Element
   }
 
   /**
+   * @param  string $string
+   * @return string
+   */
+  protected function jsDecode($string){
+    return json_decode('"' . $string . '"');
+  }
+
+  /**
    * @return string
    */
   private function getDelayKey(){
