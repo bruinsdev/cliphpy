@@ -1,0 +1,29 @@
+{
+    "name": "bruinsdev/cliphpy",
+    "description": "Tiny CLI PHP Framework",
+    "type": "library",
+    "require": {
+        "php": ">=5.6",
+        "dibi/dibi": "^3.0",
+        "sentry/sentry": "^1.6",
+        "mongodb/mongodb": "^1.1"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "andreas4all",
+            "email": "andreas4all@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "etsy/phan": "^0.7.0",
+        "eloquent/phony": "^0.14.6",
+        "friendsofphp/php-cs-fixer": "dev-master"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Cliphpy\\" : "Cliphpy/"
+        }
+    }
+}

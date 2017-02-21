@@ -1,7 +1,7 @@
 cliphpy
 =======
 
-##### version 0.3.2
+##### version 1.0.0
 
 Cliphpy is a CLI PHP Framework.
 
@@ -9,10 +9,8 @@ Install
 -------
 
 ```
-pecl install redis mongo
-npm install
-bower install
-grunt install
+make
+docker-compose up -d
 ```
 
 Developing
