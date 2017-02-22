@@ -1,11 +1,11 @@
 <?php
 
-namespace Cliphpy\Interface;
+namespace Cliphpy\Iface;
 
 interface CommandLineInterface
 {
-  /**
-   * @param  integer $signal
+    /**
+   * @param int $signal
    */
   public function close($signal);
 }
