@@ -2,7 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in('Cliphpy')
-    ->in('test')
+    ->in('Test')
 ;
 
 return PhpCsFixer\Config::create()
