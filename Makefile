@@ -4,6 +4,7 @@ default: clean install
 
 clean:
 	rm -rf vendor
+	rm -rf node_modules
 
 install:
 	composer install
