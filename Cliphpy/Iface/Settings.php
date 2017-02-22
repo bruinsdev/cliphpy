@@ -1,6 +1,6 @@
 <?php
 
-namespace Cliphpy\Interface;
+namespace Cliphpy\Iface;
 
 interface Settings
 {

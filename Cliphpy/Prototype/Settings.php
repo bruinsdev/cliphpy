@@ -2,10 +2,10 @@
 
 namespace Cliphpy\Prototype;
 
-use Cliphpy\Interface;
 use Cliphpy\Exception;
+use Cliphpy\Iface;
 
-class Settings implements Interface\Settings
+class Settings implements Iface\Settings
 {
     /**
      * @var string
