@@ -1,20 +1,16 @@
-cliphpy
-=======
+# CliPHPy
 
-##### version 1.0.0
+CliPHPy is a tiny CLI PHP Framework.
 
-Cliphpy is a CLI PHP Framework.
-
-Install
--------
+## Install
 
 ```
 make
 docker-compose up -d
 ```
 
-Developing
-----------
+## Developing
+
 Start PostgreSQL, Redis and Mongo server at localhost and then just run Grunt.
 There you run autoloader regeneration, PHPUnit testing a watch changed files.
 
