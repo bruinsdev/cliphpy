@@ -102,6 +102,11 @@ class Process extends Element
             if ($this->uSleep > 0) {
                 usleep($this->uSleep * 1000);
             }
+            $this->logLoopEnd();
+
+            if (method_exists($this->log, 'write')) {
+                $this->log->write();
+            }
         } while (true);
     }
 
