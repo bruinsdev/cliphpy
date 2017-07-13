@@ -8,10 +8,11 @@ clean:
 
 install:
 	composer install
-	npm install
+	yarn install
 
 update:
 	composer update
+	yarn upgrade-interactive
 
 devel:
 	grunt --force
