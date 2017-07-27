@@ -16,9 +16,9 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^6.0",
-        "etsy/phan": "^0.7.0",
         "eloquent/phony": "^0.14.6",
-        "friendsofphp/php-cs-fixer": "dev-master"
+        "friendsofphp/php-cs-fixer": "dev-master",
+        "phpstan/phpstan": "^0.8.0"
     },
     "autoload": {
         "psr-4" : {

@@ -5,7 +5,7 @@ namespace Cliphpy\Iface;
 interface CommandLineInterface
 {
     /**
-   * @param int $signal
-   */
-  public function close($signal);
+     * @param int $signal
+     */
+    public function close($signal);
 }

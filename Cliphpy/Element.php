@@ -10,185 +10,185 @@ use Cliphpy\Prototype\Configuration;
 abstract class Element
 {
     /**
-   * @var Configuration
-   */
-  protected $config;
+     * @var Configuration
+     */
+    protected $config;
 
-  /**
-   * @var Log
-   */
-  protected $log;
+    /**
+     * @var Log
+     */
+    protected $log;
 
-  /**
-   * @var string
-   */
-  protected $alias;
+    /**
+     * @var string
+     */
+    protected $alias;
 
-  /**
-   * @var int
-   */
-  protected $idChild;
+    /**
+     * @var int
+     */
+    protected $idChild;
 
-  /**
-   * @var string
-   */
-  protected $callerFunction;
+    /**
+     * @var string
+     */
+    protected $callerFunction;
 
-  /**
-   * @var string
-   */
-  protected $callerClass;
+    /**
+     * @var string
+     */
+    protected $callerClass;
 
-  /**
-   * @var object
-   */
-  protected $dao;
+    /**
+     * @var object
+     */
+    protected $dao;
 
-  /**
-   * @var object
-   */
-  protected $sentry;
+    /**
+     * @var object
+     */
+    protected $sentry;
 
-  /**
-   * @var float
-   */
-  private $startTimestamp;
+    /**
+     * @var float
+     */
+    private $startTimestamp;
 
-  /**
-   * @param Configuration $config
-   */
-  public function setConfig(Configuration $config)
-  {
-      $this->config = $config;
-  }
+    /**
+     * @param Configuration $config
+     */
+    public function setConfig(Configuration $config)
+    {
+        $this->config = $config;
+    }
 
-  /**
-   * @return Configuration
-   */
-  public function getConfig()
-  {
-      return $this->config;
-  }
+    /**
+     * @return Configuration
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
 
-  /**
-   * @param string $alias
-   */
-  public function setAlias($alias = 'alias')
-  {
-      if (false === is_string($alias)) {
-          throw new Exception('alias is not string', __LINE__);
-      }
-      $this->alias = $alias;
-  }
+    /**
+     * @param string $alias
+     */
+    public function setAlias($alias = 'alias')
+    {
+        if (false === is_string($alias)) {
+            throw new Exception('alias is not string', __LINE__);
+        }
+        $this->alias = $alias;
+    }
 
-  /**
-   * @return string
-   */
-  public function getAlias()
-  {
-      return $this->alias;
-  }
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
 
-  /**
-   * @param Log $log
-   */
-  public function setLog(Log $log)
-  {
-      $this->log = $log;
-  }
+    /**
+     * @param Log $log
+     */
+    public function setLog(Log $log)
+    {
+        $this->log = $log;
+    }
 
-  /**
-   * @return Log
-   */
-  public function getLog()
-  {
-      return $this->log;
-  }
+    /**
+     * @return Log
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
 
-  /**
-   * @param \Cliphpy\CAO\Redis $redis
-   */
-  public function setRedis(Redis $redis)
-  {
-      $this->redis = $redis;
-  }
+    /**
+     * @param \Cliphpy\CAO\Redis $redis
+     */
+    public function setRedis(Redis $redis)
+    {
+        $this->redis = $redis;
+    }
 
-  /**
-   * @param Cliphpy\DAO\Postgresql $postgresql
-   */
-  public function setPostgresql(Postgresql $postgresql)
-  {
-      $this->postgresql = $postgresql;
-  }
+    /**
+     * @param Cliphpy\DAO\Postgresql $postgresql
+     */
+    public function setPostgresql(Postgresql $postgresql)
+    {
+        $this->postgresql = $postgresql;
+    }
 
-  /**
-   * @param object $dao
-   */
-  public function setDao($dao)
-  {
-      if (false === is_object($dao)) {
-          throw new Exception("dao isn't object", __LINE__);
-      }
-      $this->dao = $dao;
-  }
+    /**
+     * @param object $dao
+     */
+    public function setDao($dao)
+    {
+        if (false === is_object($dao)) {
+            throw new Exception("dao isn't object", __LINE__);
+        }
+        $this->dao = $dao;
+    }
 
-  /**
-   * @param Cliphpy\DAO\MongoDb $mongo
-   */
-  public function setMongoDb(MongoDb $mongodb)
-  {
-      $this->mongodb = $mongodb;
-  }
+    /**
+     * @param Cliphpy\DAO\MongoDb $mongo
+     */
+    public function setMongoDb(MongoDb $mongodb)
+    {
+        $this->mongodb = $mongodb;
+    }
 
-  /**
-   * @param Cliphpy\Sentry $sentry
-   */
-  public function setSentry(Sentry $sentry)
-  {
-      $this->sentry = $sentry;
-  }
+    /**
+     * @param Cliphpy\Sentry $sentry
+     */
+    public function setSentry(Sentry $sentry)
+    {
+        $this->sentry = $sentry;
+    }
 
-  /**
-   * @param int $idChild
-   */
-  public function setIdChild($idChild)
-  {
-      if (false === is_int($idChild)) {
-          throw new Exception("idChild isn't integer", __LINE__);
-      }
-      $this->idChild = $idChild;
-  }
+    /**
+     * @param int $idChild
+     */
+    public function setIdChild($idChild)
+    {
+        if (false === is_int($idChild)) {
+            throw new Exception("idChild isn't integer", __LINE__);
+        }
+        $this->idChild = $idChild;
+    }
 
-  /**
-   * @return int
-   */
-  public function getIdChild()
-  {
-      return $this->idChild;
-  }
+    /**
+     * @return int
+     */
+    public function getIdChild()
+    {
+        return $this->idChild;
+    }
 
-  /**
-   * @param null|int|string|array|object $obj
-   *
-   * @return string
-   */
-  public function getSumObject($obj)
-  {
-      return md5(json_encode($obj));
-  }
+    /**
+     * @param null|int|string|array|object $obj
+     *
+     * @return string
+     */
+    public function getSumObject($obj)
+    {
+        return md5(json_encode($obj));
+    }
 
-  /**
-   * @param null|int|string|array|object $obj
-   *
-   * @return float
-   */
-  public function getSumId($obj)
-  {
-      $md5sum = $this->getSumObject($obj);
-      $hash = base_convert($md5sum, 16, 10);
+    /**
+     * @param null|int|string|array|object $obj
+     *
+     * @return float
+     */
+    public function getSumId($obj)
+    {
+        $md5sum = $this->getSumObject($obj);
+        $hash = base_convert($md5sum, 16, 10);
 
-      return (float) substr($hash, 0, 9);
-  }
+        return (float) substr($hash, 0, 9);
+    }
 
     protected function start()
     {
@@ -212,23 +212,23 @@ abstract class Element
         }
     }
 
-  /**
-   * @param object $object
-   *
-   * @return array
-   */
-  protected function checkArray($object)
-  {
-      if (false === is_array($object)) {
-          $tmp = clone $object;
-          $array = [];
-          $array[] = $tmp;
-      } else {
-          $array = $object;
-      }
+    /**
+     * @param object $object
+     *
+     * @return array
+     */
+    protected function checkArray($object)
+    {
+        if (false === is_array($object)) {
+            $tmp = clone $object;
+            $array = [];
+            $array[] = $tmp;
+        } else {
+            $array = $object;
+        }
 
-      return $array;
-  }
+        return $array;
+    }
 
     protected function caller()
     {
@@ -237,53 +237,53 @@ abstract class Element
         $this->callerClass = $trace[2]['class'];
     }
 
-  /**
-   * @param array $array
-   *
-   * @return \stdClass
-   */
-  protected function convertToObject($array)
-  {
-      return json_decode(json_encode($array));
-  }
+    /**
+     * @param array $array
+     *
+     * @return \stdClass
+     */
+    protected function convertToObject($array)
+    {
+        return json_decode(json_encode($array));
+    }
 
-  /**
-   * @param int $length
-   *
-   * @return string
-   */
-  protected function getRandomString($length = 10)
-  {
-      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $randomString = '';
-      for ($i = 0; $i < $length; ++$i) {
-          $randomString = sprintf(
+    /**
+     * @param int $length
+     *
+     * @return string
+     */
+    protected function getRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+        for ($i = 0; $i < $length; ++$i) {
+            $randomString = sprintf(
         '%s%s',
         $randomString,
         $characters[rand(0, strlen($characters) - 1)]
       );
-      }
+        }
 
-      return $randomString;
-  }
+        return $randomString;
+    }
 
-  /**
-   * @param string $string
-   *
-   * @return string
-   */
-  protected function jsDecode($string)
-  {
-      return json_decode('"'.$string.'"');
-  }
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    protected function jsDecode($string)
+    {
+        return json_decode('"'.$string.'"');
+    }
 
-  /**
-   * @return string
-   */
-  private function getDelayKey()
-  {
-      return sprintf('%s|%s', $this->callerClass, $this->callerFunction);
-  }
+    /**
+     * @return string
+     */
+    private function getDelayKey()
+    {
+        return sprintf('%s|%s', $this->callerClass, $this->callerFunction);
+    }
 
     private function initSignalHandler()
     {
@@ -294,12 +294,12 @@ abstract class Element
         pcntl_signal(SIGTERM, $handler);
     }
 
-  /**
-   * @param string $signal
-   */
-  private function signalHandler($signal)
-  {
-      switch ($signal) {
+    /**
+     * @param string $signal
+     */
+    private function signalHandler($signal)
+    {
+        switch ($signal) {
       case SIGINT:
         $type = 'SIGINT';
         break;
@@ -307,17 +307,17 @@ abstract class Element
         $type = 'SIGTERM';
         break;
     }
-      $msg = 'Detected %s. Exiting.';
-      $log = sprintf($msg, $type);
-      if (true === is_object($this->log)) {
-          $this->log->info($log);
-      }
-      $this->close($signal);
-      exit;
-  }
+        $msg = 'Detected %s. Exiting.';
+        $log = sprintf($msg, $type);
+        if (true === is_object($this->log)) {
+            $this->log->info($log);
+        }
+        $this->close($signal);
+        exit;
+    }
 
-  /**
-   * @param string $signal
-   */
-  abstract public function close($signal);
+    /**
+     * @param string $signal
+     */
+    abstract public function close($signal);
 }
