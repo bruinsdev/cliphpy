@@ -20,15 +20,15 @@ class ElementTest extends TestCase
         $this->assertEquals($config, $testObj->getConfig());
     }
 
-  /**
-   * @expectedException \Exception
-   */
-  public function testSetAliasOne()
-  {
-      $testObj = new ElementExt();
-      $alias = rand(1, 20000);
-      $testObj->setAlias($alias);
-  }
+    /**
+     * @expectedException \Exception
+     */
+    public function testSetAliasOne()
+    {
+        $testObj = new ElementExt();
+        $alias = rand(1, 20000);
+        $testObj->setAlias($alias);
+    }
 
     public function testSetAliasTwo()
     {
@@ -77,14 +77,14 @@ class ElementTest extends TestCase
         $this->assertEquals(205587684, $testObj->getSumId($obj));
     }
 
-  /**
-   * @expectedException \Exception
-   */
-  public function testIdChildOne()
-  {
-      $testObj = new ElementExt();
-      $testObj->setIdChild('abc');
-  }
+    /**
+     * @expectedException \Exception
+     */
+    public function testIdChildOne()
+    {
+        $testObj = new ElementExt();
+        $testObj->setIdChild('abc');
+    }
 
     public function testIdChildTwo()
     {
