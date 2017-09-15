@@ -4,12 +4,12 @@ namespace Cliphpy\DAO;
 
 use Cliphpy\Element;
 use Cliphpy\Exception;
-use MongoDB\Client;
+use MongoDB\Driver\Manager;
 
 class MongoDb extends Element
 {
     /**
-     * @var Client
+     * @var Manager
      */
     protected $mongo;
 
@@ -31,7 +31,7 @@ class MongoDb extends Element
         $argf = 'mongodb://%s:%d';
         $server = sprintf($argf, $this->config->mongo->address,
         $this->config->mongo->port);
-        $this->mongo = new Client($server);
+        $this->mongo = new Manager($server);
     }
 
     /**

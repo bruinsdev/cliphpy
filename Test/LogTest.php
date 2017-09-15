@@ -10,7 +10,7 @@ class LogTest extends TestCase
     public function testCreateLogFiles()
     {
         $testObj = new Log();
-        $logDir = __DIR__.'/../../test/tmp';
+        $logDir = __DIR__.'/../test/tmp';
         $testObj->setLogDir($logDir);
 
         $testObj->info('INFO MESSAGE');
