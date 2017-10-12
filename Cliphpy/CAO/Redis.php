@@ -254,7 +254,7 @@ class Redis extends Element
         }
 
         if (true === is_array($key) ||
-            strpos($key, ':') === false
+            false === strpos($key, ':')
         ) {
             $callerClass = str_replace('\\', ':', $this->callerClass);
             $caller = [$callerClass, $this->callerFunction];
