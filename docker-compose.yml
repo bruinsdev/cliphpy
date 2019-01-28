@@ -1,17 +1,23 @@
-version: '3'
+version: '3.7'
 
 services:
   redis:
-    image: redis:3-alpine
-    ports:
-      - 127.0.0.1:6379:6379
+    image: redis:alpine
 
   mongo:
     image: mongo:latest
-    ports:
-      - 127.0.0.1:27017:27017
 
   postgres:
     image: postgres:alpine
-    ports:
-      - 127.0.0.1:5432:5432
+
+  cliphy:
+    build:
+      context: .
+      dockerfile: development.Dockerfile
+    links:
+      - redis
+      - mongo
+      - postgres
+    volumes:
+      - $PWD:/usr/src/app
+    command: sleep 9999999999999

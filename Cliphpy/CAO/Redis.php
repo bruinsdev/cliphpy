@@ -52,7 +52,7 @@ class Redis extends Element
     /**
      * @param string|array $key
      *
-     * @return null|string|bool|array|object
+     * @return string|bool|array|object|null
      */
     public function get()
     {
@@ -73,7 +73,7 @@ class Redis extends Element
      * @param string|bool|array|object $value
      * @param string|array|null        $key
      *
-     * @return null|string|bool|array|object
+     * @return string|bool|array|object|null
      */
     public function set($value, $key = null)
     {

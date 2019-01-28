@@ -3,6 +3,7 @@
 namespace Cliphpy\DAO;
 
 use Cliphpy\Element;
+use Dibi\Connection;
 
 class Postgresql extends Element
 {
@@ -24,7 +25,7 @@ class Postgresql extends Element
           'sslmode' => $this->config->{$this->alias}->ssl,
         ];
 
-        $this->db = new \DibiConnection($arg);
+        $this->db = new Connection($arg);
     }
 
     /**
@@ -75,7 +76,7 @@ class Postgresql extends Element
     }
 
     /**
-     * @return \DibiConnection
+     * @return Connection
      */
     public function getDatabase()
     {

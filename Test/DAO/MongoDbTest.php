@@ -23,6 +23,7 @@ class MongoDbTest extends TestCase
         $testObj = new MongoDb();
         $config = new Configuration();
         $config->mongo = new MongoDb\Configuration();
+        $config->mongo->address = 'mongo';
         $testObj->setConfig($config);
         $testObj->connect();
         $testObj->setAlias($config->mongo->database);

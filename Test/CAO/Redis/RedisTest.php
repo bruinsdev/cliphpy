@@ -29,6 +29,8 @@ class RedisTest extends TestCase
         $config->{$alias}->port = 6379;
         $config->{$alias}->idDatabase = 15;
 
+        $config->{$alias}->address = 'redis';
+
         $this->redis->setConfig($config);
         $this->redis->connect();
     }
