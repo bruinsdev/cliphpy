@@ -168,7 +168,7 @@ abstract class Element
     }
 
     /**
-     * @param null|int|string|array|object $obj
+     * @param int|string|array|object|null $obj
      *
      * @return string
      */
@@ -178,7 +178,7 @@ abstract class Element
     }
 
     /**
-     * @param null|int|string|array|object $obj
+     * @param int|string|array|object|null $obj
      *
      * @return float
      */

@@ -18,6 +18,7 @@ class PostgresqlTest extends TestCase
 
         $config = new Configuration();
         $config->{$alias} = new Postgresql\Configuration();
+        $config->{$alias}->address = 'postgres';
         $this->postgre->setConfig($config);
         $this->postgre->connect();
 
