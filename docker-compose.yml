@@ -10,7 +10,7 @@ services:
   postgres:
     image: postgres:alpine
 
-  cliphy:
+  cliphpy:
     build:
       context: .
       dockerfile: development.Dockerfile
