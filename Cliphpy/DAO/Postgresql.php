@@ -35,7 +35,7 @@ class Postgresql extends Element
     {
         try {
             return (bool) $this->db->fetchSingle('SELECT 1');
-        } catch (DibiException $e) {
+        } catch (Dibi\Exception $e) {
             $this->log->error(json_encode($e));
             exit;
         }
@@ -146,9 +146,9 @@ class Postgresql extends Element
     }
 
     /**
-     * @param DibiException $e
+     * @param Dibi\Exception $e
      */
-    protected function catchException(\DibiException $e)
+    protected function catchException(\Dibi\Exception $e)
     {
         if (true === isset($this->sentry)) {
             $this->sentry->captureException($e);
